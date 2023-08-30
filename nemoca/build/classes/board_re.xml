@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board_rens">
+	<!-- 댓글 입력 시작 -->
+	<select id="selectbr_re_no" resultType="integer">
+		select nvl(max(br_re_no), 0) +
+		1 br_re_no from board_re
+	</select>
+	<select id="select" parameterType="string" resultType="board_re">
+		select * from board_re where br_re_no=#{br_re_no}
+	</select>
+
+	<update id="updatebr_ref">
+		update board_re set br_ref_step = br_ref_step + 1
+		where br_ref = #{br_ref} and br_ref_step > #{br_ref_step}
+	</update>
+
+	<insert id="insert" parameterType="board_re">
+		<selectKey keyProperty="br_re_no" order="BEFORE"
+			resultType="integer">
+			select nvl(max(br_re_no), 0) + 1 br_re_no from board_re
+		</selectKey>
+		insert into board_re values(#{br_re_no}, #{user_id}, #{b_no}, #{br_content},
+		#{br_ref}, #{br_ref_level}, #{br_ref_step}, sysdate, 'n')
+	</insert>
+	<!-- 댓글 입력 끝 -->
+
+	<!-- 댓글 조회 -->
+	<select id="list" parameterType="integer" resultType="board_re">
+		select * from (select rowNum rn, e.* from (select r.*, email, name
+		from board_re r, member m where r.user_id = m.user_id 
+		and r.b_no = #{b_no} and r.br_del='n' order by br_ref, br_ref_step) e) order by rn
+	</select>
+
+	<!-- 댓글 수정 -->
+	<update id="update" parameterType="board_re">
+		update board_re set br_content =
+		#{br_content} where br_re_no = #{br_re_no}
+	</update>
+
+	<!-- 댓글 삭제 -->
+	<update id="delete" parameterType="integer">
+		update board_re set br_del = 'y'
+		where br_re_no = #{br_re_no}
+	</update>
+	
+	<!-- 게시글 좋아요 증가 -->
+	<update id="likesPlus" parameterType="integer">
+		update reply set likes = likes + 1 where re_no = #{re_no}
+	</update>
+
+	<!-- 게시글 좋아요 감소 -->
+	<update id="likesMinus" parameterType="integer">
+		update reply set likes = likes - 1 where re_no = #{re_no}
+	</update>
+	
+	<!-- 좋아요 수 가져오기 -->
+	<select id="selectLikes" parameterType="integer" resultType="integer">
+		select likes from reply where re_no = #{re_no}
+	</select>
+	
+	<select id="myPage" parameterType="string" resultType="board_re">
+		select * from (select rowNum rn, e.* from (
+		select * from board_re where user_id = #{user_id} and br_del='n' order by br_re_no desc) e)
+		where rn between 1 and 4
+	</select>
+</mapper>

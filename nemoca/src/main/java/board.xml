@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardns">
+	<select id="select" parameterType="string" resultType="board">
+		select * from board where b_no=#{b_no}
+	</select>
+	<select id="getTotal" resultType="integer">
+		select count(*) from board
+	</select>
+	<select id="list" parameterType="map" resultType="board">
+		select * from (select rowNum rn, a.* from(
+			select * from board order by b_no desc)a)
+				where rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getTotalB" resultType="integer">
+		select count(*) from board where b_del='n'
+	</select>
+		<!-- 게시글 조회수 증가 -->
+	<update id="readcountUpdate" parameterType="integer">
+		update board set b_readcount = b_readcount + 1 where b_no = #{b_no}
+	</update>
+	<!-- 게시글 좋아요 증가 -->
+	<update id="likesPlus" parameterType="integer">
+		update board set likes = likes + 1 where b_no = #{b_no}
+	</update>
+
+	<!-- 게시글 좋아요 감소 -->
+	<update id="likesMinus" parameterType="integer">
+		update board set likes = likes - 1 where b_no = #{b_no}
+	</update>
+	
+	<insert id="insert" parameterType="board">
+		<selectKey keyProperty="b_no" order="BEFORE"
+			resultType="integer">
+			select nvl(max(b_no), 0) + 1 b_no from board
+		</selectKey>
+		insert into board values(#{b_no}, #{b_subject}, #{b_img1}, #{b_content}, sysdate, 'n', 0, #{user_id}, 0)
+	</insert>
+	
+	<!-- 게시글 삭제 -->
+	<update id="delete" parameterType="integer">
+		update board set b_del = 'y' where b_no = #{b_no}
+	</update>
+	
+	<!-- 게시글 수정 -->
+	<update id="update" parameterType="board">
+		update board set b_subject = #{b_subject}, b_content = #{b_content}
+			,b_img1 = #{b_img1} where b_no = #{b_no}
+	</update>
+	
+	<!-- 마이페이지 -->
+	<select id="myPage" parameterType="string" resultType="board">
+		select * from (select rowNum rn, e.* from (
+		select * from board where user_id = #{user_id} and b_del='n' order by b_no desc) e)
+		where rn between 1 and 99
+	</select>
+</mapper> 

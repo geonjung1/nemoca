@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cafe">
+	<update id="updateReadCountOne" parameterType="cafe">
+		UPDATE CAFE
+		   SET c_readcount = c_readcount + 1
+		 WHERE C_NO = #{c_no}
+	</update>
+	
+	<insert id="doLike" parameterType="map">
+		INSERT INTO CAFE_LIKE
+		(USER_ID, C_NO)
+		VALUES(#{user_id}, #{c_no})
+	</insert>
+	
+	<delete id="doUnlike" parameterType="map">
+		DELETE FROM CAFE_LIKE
+		 WHERE USER_ID = #{user_id}
+		   AND C_NO = #{c_no}
+	</delete>
+	
+	<select id="selectMaximumCafeNumber" resultType="integer">
+		SELECT NVL(MAX(c_no),0) AS C_NO FROM CAFE
+	</select>
+	
+	<select id="selectCafe" parameterType="cafe" resultType="cafe">
+		SELECT CAFE.*
+		     , NVL((
+		             SELECT COUNT(1)
+		               FROM CAFE_RE
+		              WHERE C_NO = CAFE.C_NO
+		                AND CR_DEL = 'N'
+		           ),0) AS c_replycount -- 댓글 숫자 서브쿼리
+		     , CASE WHEN (SELECT COUNT(1) FROM CAFE_STAR WHERE C_NO = CAFE.C_NO) = 0
+		                THEN '미평가'
+		            ELSE TRIM(TO_CHAR( (SELECT AVG(GRADE) FROM CAFE_STAR WHERE C_NO = CAFE.C_NO), '9.9' ))
+		       END AS STAR -- 평점 계산
+		  FROM CAFE
+		 WHERE C_NO = #{c_no}
+		   AND C_DEL = 'N'
+		 ORDER BY C_NO
+	</select>
+	
+	<select id="selectCafeReviewList" parameterType="cafereview" resultType="cafereview">
+		SELECT CAFE_RE.*
+		     , NVL((SELECT NICKNAME FROM MEMBER WHERE USER_ID = CAFE_RE.USER_ID),' ') AS NICKNAME
+		     , NVL((SELECT USER_IMG FROM MEMBER WHERE USER_ID = CAFE_RE.USER_ID),' ') AS USER_IMG
+		  FROM CAFE_RE
+		 WHERE C_NO = #{c_no}
+		   AND CR_DEL = 'N'
+		 ORDER BY CR_NO
+	</select>
+	
+	<select id="insertCafe" parameterType="cafe">
+		INSERT INTO CAFE
+		(
+		      C_NO
+		    , C_NAME, C_ADDR, C_ADDR_NEW, C_LOC, C_TEL
+		    , C_PRICE, C_OPTIME
+		    , C_IMG1, C_IMG2, C_IMG3, C_MENU1, C_MENU2, C_MENU3
+		    , C_JOIN_DATE
+		    , C_DEL, C_DEL_DATE
+		    , C_READCOUNT
+		    , USER_ID
+		)
+		VALUES(
+		      #{c_no}
+		    , #{c_name}, #{c_addr}, #{c_addr_new}, #{c_loc}, #{c_tel}
+		    , #{c_price}, #{c_optime}
+		    , #{c_img1}, #{c_img2}, #{c_img3}, #{c_menu1}, #{c_menu2}, #{c_menu3}
+		    , sysdate
+		    , 'N', sysdate
+		    , 0
+		    , #{user_id}
+		)
+	</select>
+	
+	<update id="updateCafe" parameterType="cafe">
+		UPDATE CAFE
+		   SET C_NAME     = #{c_name}
+		     , C_ADDR     = #{c_addr}
+		     , C_ADDR_NEW = #{c_addr_new}
+		     , C_LOC      = #{c_loc}
+		     , C_TEL      = #{c_tel}
+		     , C_PRICE    = #{c_price}
+		     , C_OPTIME   = #{c_optime}
+		 WHERE C_NO = #{c_no}
+	</update>
+	
+	<update id="deleteCafe" parameterType="cafe">
+		UPDATE CAFE
+		   SET C_DEL      = 'Y'
+		     , C_DEL_DATE = SYSDATE
+		 WHERE C_NO = #{c_no}
+	</update>
+</mapper>
