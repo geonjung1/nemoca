@@ -40,4 +40,9 @@ public class CafeRankingDao {
 		
 		return session.selectList("caferanking.cafeRankingList", userid);
 	}
+
+	public List<Cafe> search(String srch) {
+		
+		return session.selectList("cafe.search", srch);
+	}
 }

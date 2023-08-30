@@ -215,9 +215,7 @@ $(document).ready(function () {
 				</div>
 			</div>
 		</c:forEach>
-		
-		
-		
+			
 	</div>
 </body>
 </html>

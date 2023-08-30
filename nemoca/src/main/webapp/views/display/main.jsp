@@ -96,13 +96,22 @@ button[type=button]:hover {
 }
 
 </style>
+<script type="text/javascript">
+	function chk(){
+	if(!frm.search_txt.value){
+		alert("검색어를 입력하세요");
+		frm.search_txt.focus();
+		return false;
+	}
+}
+</script>
 </head>
 <body>
-<form action="nemoca/cafe/cafeSearch/" method="get" class="search_form">
+<form action="cafeSearch.le" name="frm" onesubmit="return chk()" class="search_form">
 	<div class="search">
 		<fieldset class="search_css">
-			<input type="text" value=" " name="search_txt" placeholder="검색어를 입력해주세요">
-			 <button type="button" value="검색">검색</button>
+			<input type="text" name="search_txt" placeholder="검색어를 입력해주세요">
+			 <input type="submit" value="검색">
 		</fieldset>
 	</div>
 </form>

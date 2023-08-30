@@ -2,12 +2,15 @@ package dao;
 
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import service.cafe.CafeLike;
 
 public class CafeLikeDao {
 	private static CafeLikeDao instance = new CafeLikeDao();
@@ -44,5 +47,10 @@ public class CafeLikeDao {
 		}else{
 			session.update("cafe.doUnlike", paramMap);
 		}
+	}
+
+	public List<CafeLike> myPage(String user_id) {
+		// TODO Auto-generated method stub
+		return session.selectList("cafe.myPage", user_id);
 	}
 }

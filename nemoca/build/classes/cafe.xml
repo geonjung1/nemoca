@@ -94,4 +94,15 @@
 		     , C_DEL_DATE = SYSDATE
 		 WHERE C_NO = #{c_no}
 	</update>
+	
+		<!-- 마이페이지 -->
+	<select id="myPage" parameterType="string" resultType="cafe">
+		select * from (select rowNum rn, e.* from (
+		select * from CAFE where user_id = #{user_id} order by c_no desc) e)
+		where rn between 1 and 4
+	</select>
+		<!-- 검색 -->
+	<select id="search" parameterType="string" resultType="cafe">
+	   select * from CAFE where c_name like '%'||#{srch}||'%' or c_loc like '%'||#{srch}||'%'
+	</select>
 </mapper>
