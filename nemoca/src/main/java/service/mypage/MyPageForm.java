@@ -10,13 +10,17 @@ import dao.BoardDao;
 import dao.Board_likeDao;
 import dao.Board_reDao;
 import dao.CafeLikeDao;
+import dao.CafeViewDao;
 import dao.MemberDao;
 import model.Board;
 import model.Board_like;
 import model.Board_re;
+import model.Cafe;
+import model.Cafe_like;
 import model.Member;
 import service.CommandProcess;
 import service.cafe.CafeLike;
+import service.cafe.CafeView;
 
 public class MyPageForm implements CommandProcess {
 
@@ -29,10 +33,16 @@ public class MyPageForm implements CommandProcess {
 					
 			MemberDao md = MemberDao.getInstance();
 			Member member = md.select(user_id);
-			
+			CafeViewDao cd = CafeViewDao.getInstance();
 			CafeLikeDao cl = CafeLikeDao.getInstance();
-			List<CafeLike> cllist = cl.myPage(user_id);
-						
+			List<Cafe_like> cllist = cl.myPage(user_id);
+			for(Cafe_like cafeLike:cllist) {
+				int c_no = cafeLike.getC_no();
+				Cafe cafe = cd.selectCafe(c_no);
+				cafeLike.setC_name(cafe.getC_name());
+				cafeLike.setC_loc(cafe.getC_loc());
+			}
+			
 			BoardDao bd = BoardDao.getInstance();
 			List<Board> bdList = bd.myPage(user_id);
 			

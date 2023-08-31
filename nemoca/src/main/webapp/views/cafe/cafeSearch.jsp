@@ -19,19 +19,38 @@
 	
 }
 
-.rankingTitle1 {
-	text-align: center;
-	font-size: 50px;
-	font-weight: 900;
-	padding-top: 80px;
+.search {
+	height: 200px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: cyan;
+	background-image: url("/nemoca/images/mainC.jpg");
 }
 
-.rankingTitle2 {
-	text-align: center;
-	font-size: 18px;
-	padding-bottom: 50px;
-	color: #9B9B9B;
-	font-weight: 650;
+input {
+	margin: 0;
+	border-radius: 10px;
+}
+
+input[type="text"] {
+	width: 70%;
+	height: 100%;
+	border: none;
+	font-size: 1em;
+	padding-left: 5px;
+	font-style: oblique;
+	display: inline;
+	outline: none;
+	box-sizing: border-box;
+	color: black;
+	box-shadow: 30px;
+}
+
+.search_css {
+	width: 40%;
+	height: 55px;
 }
 
 .rankingBox {
@@ -39,6 +58,25 @@
 	display: flex;
 	justify-content: center;
 	margin-bottom: 40px;
+}
+
+button[type=submit] {
+	width: 30%;
+	height: 100%;
+	background-color: black;
+	font-size: 1em;
+	color: white;
+	border-radius: 10px;
+	margin: 0;
+	box-sizing: border-box;
+	outline: none;
+	display: inline;
+	top: 0;
+	float: right;
+}
+
+button[type=submit]:hover {
+	background-color: lightgray;
 }
 
 .cafeImage {
@@ -64,8 +102,8 @@
 	color: #9B9B9B;
 }
 
-.cafeLike {
-	
+fieldset {
+	border-radius: 10px;
 }
 
 .cafeLikeImg {
@@ -89,6 +127,13 @@
 </style>
 
 <script>
+	function chk() {
+		if (!frm.srch.value) {
+			alert("검색어를 입력하세요");
+			frm.srch.focus();
+			return false;
+		}
+	}
 	$(document).ready(function() {
 
 		$('.cafeImage').on('click', function(e) {
@@ -109,13 +154,15 @@
 </script>
 </head>
 <body>
-	<div class="body">
-		<div class="rankingTitle">
-			<div class="rankingTitle1">네모카 카페 랭킹</div>
-			<div class="rankingTitle2">"nemoca 회원이 직접뽑은 순위 TOP 10!!"</div>
+	<form action="/nemoca/views/cafe/cafeSearch.le"
+		onesubmit="return chk()" name="frm" method="post">
+		<div class="search">
+			<fieldset class="search_css">
+				<input type="text" name="srch" placeholder="검색어를 입력해주세요">
+				<button type="submit">검색</button>
+			</fieldset>
 		</div>
-		<hr>
-	</div>
+	</form>
 	<div class="rankingList">
 		<c:if test="${cflist.size() == 0}">
 			<p class="search_text">
@@ -138,8 +185,8 @@
 								class="cafeImage" src="/nemoca/images/${cafe.c_img1}"></td>
 							<td>&nbsp;</td>
 							<td colspan="2"><span id="${cafe.c_no}_cafename"
-								class="cafeName">${cafe.cafe_like_rank}. ${cafe.c_name}</span> <span
-								class="cafeStar"> ${cafe.star}</span></td>
+								class="cafeName">${cafe.c_name}</span> <span class="cafeStar">
+									${cafe.star}</span></td>
 							<td></td>
 						</tr>
 						<tr height="50px">
@@ -170,6 +217,5 @@
 	</div>
 	</c:forEach>
 	</c:if>
-	</div>
 </body>
 </html>

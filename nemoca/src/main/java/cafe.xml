@@ -94,7 +94,6 @@
 		     , C_DEL_DATE = SYSDATE
 		 WHERE C_NO = #{c_no}
 	</update>
-	
 		<!-- 마이페이지 -->
 	<select id="myPage" parameterType="string" resultType="cafe">
 		select * from (select rowNum rn, e.* from (
@@ -103,6 +102,6 @@
 	</select>
 		<!-- 검색 -->
 	<select id="search" parameterType="string" resultType="cafe">
-	   select * from CAFE where c_name like '%'||#{srch}||'%' or c_loc like '%'||#{srch}||'%'
+	   select * from CAFE where c_name like '%'||#{srch}||'%' or c_loc like '%'||#{srch}||'%' or c_addr like '%'||#{srch}||'%' or c_addr_new like '%'||#{srch}||'%' 
 	</select>
 </mapper>

@@ -7,6 +7,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Diphylleia&display=swap')
+	;
+/* font-family: 'Diphylleia', serif; */
+* {
+	font-family: "Diphylleia";
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 .contener {
 	display: flex;
 	justify-content: center;
@@ -103,6 +115,7 @@ table tr td {
 }
 
 </style>
+
 </head>
 <body>
 	<section class="f">
@@ -111,8 +124,13 @@ table tr td {
 				<ul class="var">
 					<li><div class="poto"></div></li>
 					<li><h2>${member.nickname}님,환영합니다.</h2> <a
-						href="/nemoca/member/updateForm.pa?user_id=${member.user_id}">
+						href="/nemoca/views/member/updateForm.pa?user_id=${member.user_id}">
+						<c:if test="${member.user_id != master }">
 							<span>내 정보 수정</span>
+						</c:if>
+						<c:if test="${member.user_id == master }">
+							<span>회원 목록 관리</span>
+						</c:if>
 					</a></li>
 				</ul>
 			</div>
@@ -132,7 +150,7 @@ table tr td {
 						<c:forEach items="${cllist}" var="cl">
 						<tr>
 							<td><a href="/nemoca/views/cafe/cafeView.yo?user_id=${member.user_id}"></a>${cl.c_name}</td>
-							<td><a href="/nemoca/views/cafe/cafeView.yo?user_id=${member.user_id}"></a>${cl.like_yn}</td>
+							<td><a href="/nemoca/views/cafe/cafeView.yo?user_id=${member.user_id}"></a>${cl.c_loc}</td>
 						</tr>
 						</c:forEach>
 					</table>
@@ -171,11 +189,11 @@ table tr td {
 								<th>제목</th>
 								<th>작성날짜</th>
 							</tr>
-							<c:forEach items="${bllist}" var="bl">
+					<c:forEach items="${bllist}" var="bl">
 								<tbody>
 									<tr>
 										<td> 
-										<a href="/ne moca/views/board/boaedView.ha?user_id=${member.user_id}"></a>${bl.b_subject}</td>
+										<a href="/nemoca/views/board/boaedView.ha?user_id=${member.user_id}"></a>${bl.b_subject}</td>
 										<td><a href="/nemoca/views/board/boaedView.ha?user_id=${member.user_id}"></a>${bl.b_reg_date}</td>
 									</tr>
 								</tbody>

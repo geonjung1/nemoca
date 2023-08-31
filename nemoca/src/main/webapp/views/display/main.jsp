@@ -37,7 +37,6 @@
 	text-align: center;
 	top: 40%;
 	left: 30%;
-	
 }
 
 .list_the {
@@ -68,7 +67,7 @@ input[type="text"] {
 	box-shadow: 30px;
 }
 
-button[type=button] {
+button[type=submit] {
 	width: 35%;
 	height: 100%;
 	background-color: lightgray;
@@ -81,40 +80,41 @@ button[type=button] {
 	margin-left: -10px;
 	box-sizing: border-box;
 	right: -1px;
-	top: 0;	
-	 position: absolute;
-	 color:white;
-	 margin: 0;
+	top: 0;
+	position: absolute;
+	color: white;
+	margin: 0;
 	border-radius: 10px;
 }
 
-button[type=button]:hover {
+button[type=submit]:hover {
 	background-color: lightgray;
 }
+
 .search_css {
 	position: relative;
 }
-
 </style>
 <script type="text/javascript">
-	function chk(){
-	if(!frm.search_txt.value){
-		alert("검색어를 입력하세요");
-		frm.search_txt.focus();
-		return false;
+	function chk() {
+		if (!frm.srch.value) {
+			alert("검색어를 입력하세요");
+			frm.srch.focus();
+			return false;
+		}
 	}
-}
 </script>
 </head>
 <body>
-<form action="cafeSearch.le" name="frm" onesubmit="return chk()" class="search_form">
-	<div class="search">
-		<fieldset class="search_css">
-			<input type="text" name="search_txt" placeholder="검색어를 입력해주세요">
-			 <input type="submit" value="검색">
-		</fieldset>
-	</div>
-</form>
+	<form action="/nemoca/views/cafe/cafeSearch.le"
+		onesubmit="return chk()" method="post" name="frm">
+		<div class="search">
+			<fieldset class="search_css">
+				<input type="text" name="srch" placeholder="검색어를 입력해주세요">
+				<button type="submit">검색</button>
+			</fieldset>
+		</div>
+	</form>
 	<section class="all">
 		<div class="mid">
 			<h2 class="list_the">카페리스트</h2>
