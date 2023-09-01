@@ -30,15 +30,15 @@
 		             SELECT COUNT(1)
 		               FROM CAFE_RE
 		              WHERE C_NO = CAFE.C_NO
-		                AND CR_DEL = 'N'
+		                AND CR_DEL = 'n'
 		           ),0) AS c_replycount -- 댓글 숫자 서브쿼리
-		     , CASE WHEN (SELECT COUNT(1) FROM CAFE_STAR WHERE C_NO = CAFE.C_NO) = 0
+		     , CASE WHEN (SELECT COUNT(1) FROM CAFE_RE WHERE C_NO = CAFE.C_NO AND CR_DEL = 'n') = 0
 		                THEN '미평가'
-		            ELSE TRIM(TO_CHAR( (SELECT AVG(GRADE) FROM CAFE_STAR WHERE C_NO = CAFE.C_NO), '9.9' ))
+		            ELSE TRIM(TO_CHAR( (SELECT AVG(CR_GRADE) FROM CAFE_RE WHERE C_NO = CAFE.C_NO AND CR_DEL = 'n'), '9.9' ))
 		       END AS STAR -- 평점 계산
 		  FROM CAFE
 		 WHERE C_NO = #{c_no}
-		   AND C_DEL = 'N'
+		   AND C_DEL = 'n'
 		 ORDER BY C_NO
 	</select>
 	
@@ -48,7 +48,7 @@
 		     , NVL((SELECT USER_IMG FROM MEMBER WHERE USER_ID = CAFE_RE.USER_ID),' ') AS USER_IMG
 		  FROM CAFE_RE
 		 WHERE C_NO = #{c_no}
-		   AND CR_DEL = 'N'
+		   AND CR_DEL = 'n'
 		 ORDER BY CR_NO
 	</select>
 	
@@ -70,7 +70,7 @@
 		    , #{c_price}, #{c_optime}
 		    , #{c_img1}, #{c_img2}, #{c_img3}, #{c_menu1}, #{c_menu2}, #{c_menu3}
 		    , sysdate
-		    , 'N', sysdate
+		    , 'n', sysdate
 		    , 0
 		    , #{user_id}
 		)
@@ -85,16 +85,23 @@
 		     , C_TEL      = #{c_tel}
 		     , C_PRICE    = #{c_price}
 		     , C_OPTIME   = #{c_optime}
+		     , C_IMG1     = #{c_img1}
+		     , C_IMG2     = #{c_img2}
+		     , C_IMG3     = #{c_img3}
+		     , C_MENU1    = #{c_menu1}
+		     , C_MENU2    = #{c_menu2}
+		     , C_MENU3    = #{c_menu3}
 		 WHERE C_NO = #{c_no}
 	</update>
 	
 	<update id="deleteCafe" parameterType="cafe">
 		UPDATE CAFE
-		   SET C_DEL      = 'Y'
+		   SET C_DEL      = 'y'
 		     , C_DEL_DATE = SYSDATE
 		 WHERE C_NO = #{c_no}
 	</update>
-		<!-- 마이페이지 -->
+	
+			<!-- 마이페이지 -->
 	<select id="myPage" parameterType="string" resultType="cafe">
 		select * from (select rowNum rn, e.* from (
 		select * from CAFE where user_id = #{user_id} order by c_no desc) e)

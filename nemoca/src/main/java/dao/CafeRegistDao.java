@@ -33,21 +33,11 @@ public class CafeRegistDao {
 
 	public Integer selectMaximumCafeNumber() {
 		Integer cafeNumber = (int)session.selectOne("cafe.selectMaximumCafeNumber");
-		if(cafeNumber == null) {
-			return null;
-		}
 		
 		return cafeNumber;
 	}
 
 	public int insertCafe(Cafe cafe) {
-		cafe.setC_img1(cafe.getC_no()+"1");
-		cafe.setC_img2(cafe.getC_no()+"2");
-		cafe.setC_img3(cafe.getC_no()+"3");
-		cafe.setC_menu1(cafe.getC_no()+"4");
-		cafe.setC_menu2(cafe.getC_no()+"5");
-		cafe.setC_menu3(" ");
-		
 		return session.insert("cafe.insertCafe", cafe);
 	}
 	

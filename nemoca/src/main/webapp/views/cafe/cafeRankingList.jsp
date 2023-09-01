@@ -101,7 +101,7 @@ $(document).ready(function () {
 			like_yn = "Y";
 		}
 		
-		location.href = "/nemoca/views/cafe/cafeDoLike.yo?c_no=" + c_no + "&user_id=" + user_id + "&like_yn=" + like_yn;
+		location.href = "/nemoca/views/cafe/cafeLikeResult.yo?c_no=" + c_no + "&user_id=" + user_id + "&like_yn=" + like_yn;
 	});
 	
 	$('.cafeImage').on('click', function(e) {
@@ -153,14 +153,12 @@ $(document).ready(function () {
 						</td>
 						<td>
 							<span class="cafeLike">
-								<c:choose>
-									<c:when test="${cafe.like_yn eq 'Y'}">
-										<img id="${cafe.c_no}_img" class="cafeLikeImg" src="/nemoca/images/like.png">
-									</c:when>
-									<c:otherwise>
-										<img id="${cafe.c_no}_img" class="cafeLikeImg" src="/nemoca/images/unlike.png">
-									</c:otherwise>
-								</c:choose>
+								<c:if test="${cafe.like_yn eq 'y'}">
+									<img id="${cafe.c_no}_img" class="cafeLikeImg" src="/nemoca/images/like.png">
+								</c:if>
+								<c:if test="${cafe.like_yn eq 'n'}">
+									<img id="${cafe.c_no}_img" class="cafeLikeImg" src="/nemoca/images/unlike.png">
+								</c:if>
 							</span>
 						</td>
 					</tr>
@@ -215,7 +213,6 @@ $(document).ready(function () {
 				</div>
 			</div>
 		</c:forEach>
-			
 	</div>
 </body>
 </html>

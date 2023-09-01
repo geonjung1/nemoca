@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Cafe_re {
 	private int cr_no;
 	private String cr_content;
+	private int cr_grade;
 	private Date cr_reg_date;
 	private String cr_del;
 	private Date cr_del_date;
@@ -25,6 +26,12 @@ public class Cafe_re {
 	}
 	public void setCr_content(String cr_content) {
 		this.cr_content = cr_content;
+	}
+	public int getCr_grade() {
+		return cr_grade;
+	}
+	public void setCr_grade(int cr_grade) {
+		this.cr_grade = cr_grade;
 	}
 	public Date getCr_reg_date() {
 		return cr_reg_date;

@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import model.Cafe;
 import model.Cafe_re;
 
 public class CafeReviewRegistDao {
@@ -36,12 +35,7 @@ public class CafeReviewRegistDao {
 		Cafe_re cafeReview = new Cafe_re();
 		cafeReview.setC_no(Integer.parseInt(c_no));
 		
-		Integer cafeReviewNumber = (int)session.selectOne("cafereview.selectMaximumCafeReviewNumber", cafeReview);
-		if(cafeReviewNumber == null) {
-			return null;
-		}
-		
-		return cafeReviewNumber;
+		return (int)session.selectOne("cafereview.selectMaximumCafeReviewNumber", cafeReview);
 	}
 
 	public int insertCafeReview(Cafe_re cafeReview) {

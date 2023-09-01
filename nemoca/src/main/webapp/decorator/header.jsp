@@ -129,9 +129,9 @@ ul {
 				src='/nemoca/images/home_logo.png'>
 			</a>
 			<ul class="main-menu">
-				<li><a class="head" href="/nemoca/views/cafe/cafeList.ha">
+				<li><a class="head" href="/nemoca/views/cafe/cafeRankingList.yo">
 						<img src='/nemoca/images/coffee.PNG' width="40px">카페 구경하기
-				</a>
+				</a></li>
 				
 				<c:if test="${id eq 'master'}">
 				<li><a class="head" href="/nemoca/views/cafe/cafeRegist.yo">

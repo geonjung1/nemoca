@@ -8,11 +8,8 @@
 		<typeAlias alias="board" type="model.Board" />
 		<typeAlias alias="board_like" type="model.Board_like" />
 		<typeAlias alias="board_re" type="model.Board_re"/>
-		<typeAlias type="model.Cafe" alias="cafe"/>
-		<typeAlias type="model.CafeRanking" alias="caferanking"/>
+		<typeAlias alias="cafe" type="model.Cafe" />
 		<typeAlias alias="cafereview" type="model.Cafe_re" />
-		<typeAlias alias="cafestar" type="model.Cafe_star" />
-		
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

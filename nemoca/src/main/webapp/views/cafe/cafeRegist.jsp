@@ -24,27 +24,30 @@
 .writeTable1 { /* 카페명 */
 	padding-top: 10px;
 }
-
-.writeTable2 { /* 주소 */
+.writeTable2 { /* 카페 유형 */
 	padding-top: 10px;
 }
 
-.writeTable3 { /* 지역 */
+.writeTable3 { /* 주소 */
 	padding-top: 10px;
 }
 
-.writeTable4 { /* 전화번호 */
+.writeTable4 { /* 지역 */
 	padding-top: 10px;
 }
 
-.writeTable5 { /* 가격 */
+.writeTable5 { /* 전화번호 */
 	padding-top: 10px;
 }
 
-.writeTable6 { /* 운영시간 */
+.writeTable6 { /* 가격 */
 	padding-top: 10px;
 }
-.writeTable7 {
+
+.writeTable7 { /* 운영시간 */
+	padding-top: 10px;
+}
+.writeTable8 {
 	padding-top: 10px;
 }
 .writeTable8 {
@@ -108,11 +111,14 @@ $(document).ready(function () {
 <body>
 <div class="writeAll">
 	<p class="title">카페 등록하기</p>
-	<form name="inputForm" method="post" action="cafeDoRegist.yo">
+	<form name="inputForm" method="post" action="cafeDoRegist.yo" enctype="multipart/form-data">
 		<div class="writeTable1">
 			<input id="input1" type="text" name="c_name" placeholder=" 카페명 * " required="required" autofocus="autofocus">
 		</div>
 		<div class="writeTable2">
+			<input id="input1" type="text" name="c_type" placeholder=" 카페 타입 (예시 : dessert )" required="required" value="${cafe.c_type}">
+		</div>
+		<div class="writeTable3">
 			<input id="input1" type="text" name="c_addr" placeholder=" 주소 * " required="required">
 				<div class="writeTable3">
 					<input id="input1" type="text" name="c_addr_new" placeholder=" 지번 * ( 예시 : ㅇㅇ동 123-45 )" required="required">
@@ -157,19 +163,19 @@ $(document).ready(function () {
 		</div>
 		<div class="writeTable8">
 			<div class="imgUploadBox">
-				<input type="file" id="f1" name="thumbnail">
+				<input type="file" id="f1" name="thumbnail_1">
 			</div>
 			<div class="imgUploadBox">
-				<input type="file" id="f2" name="thumbnail">
+				<input type="file" id="f2" name="thumbnail_2">
 			</div>
 			<div class="imgUploadBox">
-				<input type="file" id="f3" name="thumbnail">
+				<input type="file" id="f3" name="thumbnail_3">
 			</div>
 			<div class="imgUploadBox">
-				<input type="file" id="f4" name="thumbnail">
+				<input type="file" id="f4" name="thumbnail_4">
 			</div>
 			<div class="imgUploadBox">
-				<input type="file" id="f5" name="thumbnail">
+				<input type="file" id="f5" name="thumbnail_5">
 			</div>
 		</div>
 		<div class="writeButton">

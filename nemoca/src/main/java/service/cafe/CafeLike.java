@@ -16,9 +16,9 @@ public class CafeLike implements CommandProcess {
 		
 		CafeLikeDao cld = CafeLikeDao.getInstance();
 		
-		cld.doCafeLike(c_no, user_id, like_yn);
+		int result = cld.doCafeLike(c_no, user_id, like_yn);
+		request.setAttribute("result", result);
 		
 		return "cafeLikeResult";
 	}
-
 }

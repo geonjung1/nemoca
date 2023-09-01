@@ -8,8 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script type="text/javascript">
-		history.go(-1);
-	</script>
+	<c:if test="${result > 0 }">
+		<script type="text/javascript">
+			location.href = "/nemoca/views/cafe/cafeRankingList.yo";
+		</script>
+	</c:if>
+	<c:if test="${result <= 0 }">
+		<script type="text/javascript">
+			alert("카페 좋아요 실패!");
+			history.go(-1);
+		</script>
+	</c:if>
 </body>
 </html>

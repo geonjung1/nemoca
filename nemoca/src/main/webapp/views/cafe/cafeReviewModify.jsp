@@ -36,6 +36,7 @@ textarea{
 	border-radius: 3px;
 	font-size: 15px;
 	resize: none;
+	wrap: hard;
 }
 .buttonTable {
 	display: flex;
@@ -73,8 +74,14 @@ textarea{
 	border-radius: 100px;
 	cursor:pointer;
 }
-</style>
 
+.cr_gradeText{
+	color: #9B9B9B;
+}
+.cr_grade{
+	color: #9B9B9B;
+}
+</style>
 </head>
 <body>
 	<form name="inputForm" method="post" action="cafeDoReviewModify.yo">
@@ -87,6 +94,16 @@ textarea{
 					<td>
 						<span class="cafeName">${cafe.c_name}</span>
 						<span class="ex">&nbsp;에 대한 솔직한 리뷰를 써주세요.</span>
+					</td>
+					<td>
+						<span class="cr_gradeText">평점&nbsp;</span>
+						<select class="cr_grade" name="cr_grade" required="required">
+							<option value="5" selected>5점</option>
+							<option value="4">4점</option>
+							<option value="3">3점</option>
+							<option value="2">2점</option>
+							<option value="1">1점</option>
+						</select>
 					</td>
 				</tr>
 			</table>

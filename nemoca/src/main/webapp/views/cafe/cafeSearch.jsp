@@ -20,13 +20,13 @@
 }
 
 .search {
-	height: 200px;
+	height: 250px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	background-color: cyan;
-	background-image: url("/nemoca/images/mainC.jpg");
+	background: #F7F7F7;
+	
 }
 
 input {
@@ -124,16 +124,24 @@ fieldset {
 .tableEnd {
 	height: 40px;
 }
+.search_text {
+	text-align: center;
+	font-size: 20px;
+	
+}
+.no_search {
+	
+}
 </style>
 
 <script>
-	function chk() {
-		if (!frm.srch.value) {
+	 function srchchk() {
+		if(!frm.srch.value) {
 			alert("검색어를 입력하세요");
 			frm.srch.focus();
 			return false;
 		}
-	}
+	} 
 	$(document).ready(function() {
 
 		$('.cafeImage').on('click', function(e) {
@@ -159,15 +167,17 @@ fieldset {
 		<div class="search">
 			<fieldset class="search_css">
 				<input type="text" name="srch" placeholder="검색어를 입력해주세요">
-				<button type="submit">검색</button>
+				<button type="submit" onclick="srchchk()">검색</button>
 			</fieldset>
 		</div>
 	</form>
 	<div class="rankingList">
 		<c:if test="${cflist.size() == 0}">
+		<div class="no_search">
 			<p class="search_text">
 				검색 결과가 없습니다.<br>다른 검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요.
 			</p>
+		</div>
 		</c:if>
 		<c:if test="${cflist.size() != 0}">
 			<c:forEach var="cafe" items="${cflist}">

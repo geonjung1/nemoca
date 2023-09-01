@@ -25,7 +25,7 @@
 }
 
 .poto {
-	background-image: url("/nemoca/images/am.jpg");
+	/* background-image: url("/nemoca/images/am.jpg"); */
 	display: inline-block;
 	border: 1px solid;
 	color: white;
@@ -33,7 +33,7 @@
 	padding: 0;
 	width: 200px;
 	height: 200px;
-	border-radius: 50%
+	border-radius: 50%;
 }
 
 .in {
@@ -113,6 +113,11 @@ table tr td {
 	table-layout: fixed;
 	overflow: hidden;
 }
+.pt {
+	display:block;
+	margin:auto;
+	
+}
 
 </style>
 
@@ -122,8 +127,8 @@ table tr td {
 		<div class="contener">
 			<div class="in">
 				<ul class="var">
-					<li><div class="poto"></div></li>
-					<li><h2>${member.nickname}님,환영합니다.</h2> <a
+					<li><div><img class="poto" src="/nemoca/images/am.jpg"></div></li>
+					<li><h2>${member.nickname}님,환영합니다.</h2> <a class="pt"
 						href="/nemoca/views/member/updateForm.pa?user_id=${member.user_id}">
 						<c:if test="${member.user_id != master }">
 							<span>내 정보 수정</span>
@@ -139,9 +144,9 @@ table tr td {
 			<ul class="content_main">
 				<li class="content_box">
 					<h3>카페 좋아요</h3>
-					 <c:if test="${cllist.size() == 0}">
+					 <c:if test="${cafeLike.size() == 0}">
 						<p>좋아요한 카페가 없습니다</p>
-					</c:if> <c:if test="${cllist.size() != 0}">
+					</c:if> <c:if test="${cafeLike.size() != 0}">
 					<table>
 						<tr>
 							<th>전시명</th>

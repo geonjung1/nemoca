@@ -3,15 +3,16 @@ package model;
 import java.sql.Date;
 
 public class Cafe {
-	private int c_no;   
+	private int c_no;
 	private String c_name;
+	private String c_type;
 	private String c_addr;
 	private String c_addr_new;
-	private String c_loc;  
+	private String c_loc;
 	private String c_tel;
 	private String c_price;
 	private String c_optime;
-	private String c_img1;  
+	private String c_img1;
 	private String c_img2;
 	private String c_img3;
 	private String c_menu1;
@@ -22,13 +23,23 @@ public class Cafe {
 	private Date c_del_date;
 	private int c_readcount;
 	private String user_id;
+	private int like_count;
+	private int cafe_like_rank;
+	private String like_yn;
 	private int c_replycount;
 	private String star;
+	
 	public int getC_no() {
 		return c_no;
 	}
 	public void setC_no(int c_no) {
 		this.c_no = c_no;
+	}
+	public String getC_type() {
+		return c_type;
+	}
+	public void setC_type(String c_type) {
+		this.c_type = c_type;
 	}
 	public String getC_name() {
 		return c_name;
@@ -138,6 +149,24 @@ public class Cafe {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
+	public int getLike_count() {
+		return like_count;
+	}
+	public void setLike_count(int like_count) {
+		this.like_count = like_count;
+	}
+	public int getCafe_like_rank() {
+		return cafe_like_rank;
+	}
+	public void setCafe_like_rank(int cafe_like_rank) {
+		this.cafe_like_rank = cafe_like_rank;
+	}
+	public String getLike_yn() {
+		return like_yn;
+	}
+	public void setLike_yn(String like_yn) {
+		this.like_yn = like_yn;
+	}
 	public int getC_replycount() {
 		return c_replycount;
 	}
@@ -150,5 +179,4 @@ public class Cafe {
 	public void setStar(String star) {
 		this.star = star;
 	}
-	
 }

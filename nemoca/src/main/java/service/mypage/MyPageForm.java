@@ -10,6 +10,7 @@ import dao.BoardDao;
 import dao.Board_likeDao;
 import dao.Board_reDao;
 import dao.CafeLikeDao;
+import dao.CafeRankingDao;
 import dao.CafeViewDao;
 import dao.MemberDao;
 import model.Board;
@@ -33,6 +34,7 @@ public class MyPageForm implements CommandProcess {
 					
 			MemberDao md = MemberDao.getInstance();
 			Member member = md.select(user_id);
+			
 			CafeViewDao cd = CafeViewDao.getInstance();
 			CafeLikeDao cl = CafeLikeDao.getInstance();
 			List<Cafe_like> cllist = cl.myPage(user_id);
@@ -42,6 +44,8 @@ public class MyPageForm implements CommandProcess {
 				cafeLike.setC_name(cafe.getC_name());
 				cafeLike.setC_loc(cafe.getC_loc());
 			}
+				System.out.println("cllist = "+cllist );
+			
 			
 			BoardDao bd = BoardDao.getInstance();
 			List<Board> bdList = bd.myPage(user_id);

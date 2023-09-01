@@ -10,8 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import model.Cafe;
 import model.Cafe_like;
-import service.cafe.CafeLike;
 
 public class CafeLikeDao {
 	private static CafeLikeDao instance = new CafeLikeDao();
@@ -38,20 +38,25 @@ public class CafeLikeDao {
 		}
 	}
 
-	public void doCafeLike(String c_no, String user_id, String like_yn) {
+	public int doCafeLike(String c_no, String user_id, String like_yn) {
 		Map<String,String> paramMap = new HashMap<String,String>();
 		paramMap.put("c_no", c_no);
 		paramMap.put("user_id", user_id);
 		
 		if("Y".equals(like_yn)) {
-			session.update("cafe.doLike", paramMap);
+			return session.update("cafe.doLike", paramMap);
 		}else{
-			session.update("cafe.doUnlike", paramMap);
+			return session.update("cafe.doUnlike", paramMap);
 		}
 	}
-
 	public List<Cafe_like> myPage(String user_id) {
 		// TODO Auto-generated method stub
 		return session.selectList("cafe.myPage", user_id);
+	}
+	public Cafe selectCafe(Integer c_no) {
+		Cafe cafe = new Cafe();
+		cafe.setC_no(c_no);
+		
+		return (Cafe)session.selectOne("cafe.selectCafe", cafe);
 	}
 }

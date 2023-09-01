@@ -42,18 +42,17 @@ public class CafeViewDao {
 		
 		session.update("cafe.updateReadCountOne", cafe);
 	}
-
-	public Cafe selectCafe(Integer c_no) {
-		Cafe cafe = new Cafe();
-		cafe.setC_no(c_no);
-		
-		return (Cafe)session.selectOne("cafe.selectCafe", cafe);
-	}
 	
 	public List<Cafe_re> selectCafeReviewList(Integer c_no) {
 		Cafe_re cafeReview = new Cafe_re();
 		cafeReview.setC_no(c_no);
 		
 		return session.selectList("cafe.selectCafeReviewList", cafeReview);
+	}
+	public Cafe selectCafe(Integer c_no) {
+		Cafe cafe = new Cafe();
+		cafe.setC_no(c_no);
+		
+		return (Cafe)session.selectOne("cafe.selectCafe", cafe);
 	}
 }

@@ -41,6 +41,7 @@
 		(
 		      CR_NO
 		    , CR_CONTENT
+		    , CR_GRADE
 		    , CR_REG_DATE
 		    , CR_DEL, CR_DEL_DATE
 		    , USER_ID
@@ -49,6 +50,7 @@
 		VALUES(
 		      #{cr_no}
 		    , #{cr_content}
+		    , #{cr_grade}
 		    , SYSDATE
 		    , 'N', SYSDATE
 		    , #{user_id}
@@ -59,6 +61,7 @@
 	<update id="updateCafeReview" parameterType="cafereview">
 		UPDATE CAFE_RE
 		   SET CR_CONTENT = #{cr_content}
+		     , CR_GRADE = #{cr_grade}
 		 WHERE CR_NO = #{cr_no}
 		   AND C_NO = #{c_no}
 	</update>

@@ -34,15 +34,29 @@ public class CafeRankingDao {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	public List<Cafe> list() {
-		String userid = "master";
-		
-		return session.selectList("caferanking.cafeRankingList", userid);
+
+	public List<Cafe> list(String user_id) {
+		Cafe cafe = new Cafe();
+		cafe.setUser_id(user_id);
+
+		session.clearCache();
+
+		return session.selectList("caferanking.cafeRankingList", cafe);
+	}
+
+	public List<Cafe> listDessert(String user_id) {
+		return null;
 	}
 
 	public List<Cafe> search(String srch) {
-		
+
 		return session.selectList("cafe.search", srch);
 	}
+
+	public Cafe selectCafe(String user_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+		
 }

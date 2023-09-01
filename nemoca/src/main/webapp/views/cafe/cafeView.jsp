@@ -185,6 +185,7 @@
 .reviewDateTime{
 	width: 790px;
 	height: 30px;
+	padding-left: 20px;
 }
 .reviewModify{
 	width: 40px;
@@ -205,21 +206,9 @@
 	height: 100%;
 	text-align: left;
 	vertical-align: top;
+	padding-left: 20px;
+	white-space: pre-wrap;
 }
-/* .reviewSelfie { */
-/* 	height:130px; */
-/* 	width: 130px; */
-/* 	border-radius: 70%; */
-/* 	overflow: hidden; */
-/* } */
-/* .reviewNic { */
-/* 	display: flex; */
-/* 	justify-content: center; */
-/* } */
-/* .reviewText { */
-/* 	padding-left: 10px; */
-/* 	align-items: top; */
-/* } */
 </style>
 
 <script>
@@ -272,6 +261,7 @@ $(document).ready(function () {
 		$("[name=cr_no]").val(name[0]);
 		$("[name=c_no]").val(name[1]);
 		reviewModifyForm.submit();
+		
 	});
 	
 	$('.reviewDelete').on('click', function(e) {
@@ -336,7 +326,9 @@ $(document).ready(function () {
 			<td><span class="Readcount">조회수 ${cafe.c_readcount}</span></td>
 			<td><span class="Reviewthat">댓글 ${cafe.c_replycount}</span></td>
 			<td></td>
-			<td><span class="cafeReview">리뷰쓰기</span></td>
+			<td>
+				<span class="cafeReview">리뷰쓰기</span>
+			</td>
 			<td>
 				<c:if test="${id eq 'master'}">
 				<span class="cafeModify">수정</span>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -401,15 +393,19 @@ $(document).ready(function () {
 				<div class="reviewDateTime">${cafeReview.cr_reg_date}</div>
 			</td>
 			<td>
+				<c:if test="${id eq cafeReview.user_id}">
 				<div class="reviewModify" name="${cafeReview.cr_no}-${cafeReview.c_no}">수정</div>
+				</c:if>
 			</td>
 			<td>
+				<c:if test="${id eq cafeReview.user_id}">
 				<div class="reviewDelete" name="${cafeReview.cr_no}-${cafeReview.c_no}">삭제</div>
+				</c:if>
 			</td>
 		</tr>
 		<tr>
 			<td valign=top rowspan="2" colspan="3">
-				<div class="reviewText">${cafeReview.cr_content}</div>
+				<div class="reviewText"><span>${cafeReview.cr_content}</span></div>
 			</td>
 		</tr>
 		<tr>
