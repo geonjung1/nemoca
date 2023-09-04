@@ -8,7 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import model.Board;
 import model.Cafe;
+import model.Cafe_like;
 
 public class CafeRankingDao {
 	private static CafeRankingDao instance = new CafeRankingDao();
@@ -35,17 +37,14 @@ public class CafeRankingDao {
 		}
 	}
 
-	public List<Cafe> list(String user_id) {
+	public List<Cafe> list(String user_id, String rankingType) {
 		Cafe cafe = new Cafe();
 		cafe.setUser_id(user_id);
-
+		cafe.setC_type(rankingType);
+		
 		session.clearCache();
-
+		
 		return session.selectList("caferanking.cafeRankingList", cafe);
-	}
-
-	public List<Cafe> listDessert(String user_id) {
-		return null;
 	}
 
 	public List<Cafe> search(String srch) {
@@ -53,10 +52,4 @@ public class CafeRankingDao {
 		return session.selectList("cafe.search", srch);
 	}
 
-	public Cafe selectCafe(String user_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-		
 }

@@ -1,3 +1,16 @@
+select * from (select rowNum rn, e.* from (
+		select * from cafe_like where user_id = 'user' order by c_no desc) e)
+		where rn between 1 and 4;
+		
+select * from (select rowNum rn, e.* from (
+		select * from board_re where user_id = user and br_del='n' order by br_re_no desc) e)
+		where rn between 1 and 4;
+
+select * from board_re where user_id = ee;		
+		
+select * from board_re;
+		
+select * from cafe_like;
 -- 회원
 drop table member cascade constraints;
 select * from member;
@@ -23,10 +36,10 @@ insert into member values ('user', '사용자', '사용자_닉', 'user@user.com'
 
 -- 카페
 drop table cafe;
-CREATE TABLE CAFE
+CREATE TABLE CAFE 
 (
  c_no   NUMBER CONSTRAINT cafe_c_no_PK PRIMARY KEY NOT NULL,
- c_type VARCHAR2(100) NOT NULL,
+ c_type   VARCHAR2(20) NOT NULL,
  c_name   VARCHAR2(100) NOT NULL,
  c_addr   VARCHAR2(100) NOT NULL,
  c_addr_new   VARCHAR2(100) NOT NULL,
@@ -46,17 +59,18 @@ CREATE TABLE CAFE
  c_readcount NUMBER NOT NULL,
  user_id   VARCHAR2(100) constraint cafe_user_id_fk references member(user_id) NOT NULL
 );
-
+select * from CAFE where user_id = 'user';
+update CAFE set user_id = 'user';
 insert all into cafe (c_no, c_type, c_name, c_addr, c_addr_new, c_loc, c_tel, c_price, c_optime, c_img1, c_img2, c_img3, c_menu1, c_menu2, c_join_date, c_del, c_del_date, c_readcount, user_id) values
-    (1,'dessert','일월십일','서울 양천구 목동 중앙남로9길 41 1층','목동 730-18','목동','070-4215-0110','4500원 ~ 13500원','10:00 ~ 23:00','janten1.jpg','janten2.jpg','janten3.jpg','janten4.jpg','janten5.jpg',sysdate,'n',sysdate,0,'master')
+    (1,'dessert','일월십일','서울 양천구 목동 중앙남로9길 41 1층','목동 730-18','양천구','070-4215-0110','4500원 ~ 13500원','10:00 ~ 23:00','janten1.jpg','janten2.jpg','janten3.jpg','janten4.jpg','janten5.jpg',sysdate,'n',sysdate,0,'master')
 into cafe (c_no, c_type, c_name, c_addr, c_addr_new, c_loc, c_tel, c_price, c_optime, c_img1, c_img2, c_img3, c_menu1, c_menu2, c_join_date, c_del, c_del_date, c_readcount, user_id) values
-    (2,'dessert','디어다온','서울 마포구 연희로1길 28 101호','동교동 113-29','연남동','0507-1334-9138','5000원 ~ 6500원','11:00 ~ 20:00','dear1.jpg','dear2.jpg','dear3.jpg','dear4.jpg','dear5.jpg',sysdate,'n',sysdate,0,'master')
+    (2,'dessert','디어다온','서울 마포구 연희로1길 28 101호','동교동 113-29','마포구','0507-1334-9138','5000원 ~ 6500원','11:00 ~ 20:00','dear1.jpg','dear2.jpg','dear3.jpg','dear4.jpg','dear5.jpg',sysdate,'n',sysdate,0,'master')
 into cafe (c_no, c_type, c_name, c_addr, c_addr_new, c_loc, c_tel, c_price, c_optime, c_img1, c_img2, c_img3, c_menu1, c_menu2, c_join_date, c_del, c_del_date, c_readcount, user_id) values
-    (3,'dessert','고래당','서울 중랑구 면목로49길 70 1층','면목동 576-20','면목동','010-6546-0661','2500원 ~ 4000원','11:00 ~ 17:00','whale1.jpg','whale2.jpg','whale3.jpg','whale4.jpg','whale5.jpg',sysdate,'n',sysdate,0,'master')
+    (3,'dessert','고래당','서울 중랑구 면목로49길 70 1층','면목동 576-20','중랑구','010-6546-0661','2500원 ~ 4000원','11:00 ~ 17:00','whale1.jpg','whale2.jpg','whale3.jpg','whale4.jpg','whale5.jpg',sysdate,'n',sysdate,0,'master')
 into cafe (c_no, c_type, c_name, c_addr, c_addr_new, c_loc, c_tel, c_price, c_optime, c_img1, c_img2, c_img3, c_menu1, c_menu2, c_join_date, c_del, c_del_date, c_readcount, user_id) values
-    (4,'dessert','크랙커피','서울 성북구 보문로23길 7  1층',' 보문동5가 2','보문동','0507-1324-7794','4000원 ~ 5000원','11:00 ~ 21:00','krack1.jpg','krack2.jpg','krack3.jpg','krack4.jpg','krack5.jpg',sysdate,'n',sysdate,0,'master')
+    (4,'dessert','크랙커피','서울 성북구 보문로23길 7  1층',' 보문동5가 2','성북구','0507-1324-7794','4000원 ~ 5000원','11:00 ~ 21:00','krack1.jpg','krack2.jpg','krack3.jpg','krack4.jpg','krack5.jpg',sysdate,'n',sysdate,0,'master')
 into cafe (c_no, c_type, c_name, c_addr, c_addr_new, c_loc, c_tel, c_price, c_optime, c_img1, c_img2, c_img3, c_menu1, c_menu2, c_join_date, c_del, c_del_date, c_readcount, user_id) values
-    (5,'dessert','쿰배오','서울 강동구 명일로26길 12 1층','길동 83-4','성내동','0507-1406-5280','3000원 ~ 12400원','11:00 ~ 22:00','cum1.jpg','cum2.jpg','cum3.jpg','cum4.jpg','cum5.jpg',sysdate,'n',sysdate,0,'master')
+    (5,'dessert','쿰배오','서울 강동구 명일로26길 12 1층','길동 83-4','강동구','0507-1406-5280','3000원 ~ 12400원','11:00 ~ 22:00','cum1.jpg','cum2.jpg','cum3.jpg','cum4.jpg','cum5.jpg',sysdate,'n',sysdate,0,'master')
 select * from dual;
 
 delete from cafe;
@@ -69,6 +83,7 @@ CREATE TABLE cafe_like
  user_id   VARCHAR2(100) constraint cafe_like_user_id_fk references member(user_id) NOT NULL,
  c_no   NUMBER constraint cafe_like_c_no_fk references cafe(c_no) NOT NULL
 );
+ALTER TABLE SCOTT.CAFE_LIKE ADD(CONSTRAINT CAFE_LIKE_PK PRIMARY KEY (USER_ID, C_NO));
 select * from cafe_like;
 
 -- 카페 리뷰
@@ -199,6 +214,3 @@ UPDATE CAFE
 
 select * from cafe where user_id = 'user';
 
-INSERT INTO cafe_like
-		(USER_ID, C_NO)
-		VALUES(#{user_id}, #{c_no});

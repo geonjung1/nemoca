@@ -104,6 +104,21 @@ button[type=submit]:hover {
 		}
 	}
 </script>
+<script>
+	$(document).ready(function () {
+		$('.card-title').on('click', function(e) {
+			requestRankingTypeList($(this).attr("name"));
+		});
+		
+		$('.card-img-top').on('click', function(e) {
+			requestRankingTypeList($(this).attr("name"));
+		});
+	});
+	
+	function requestRankingTypeList(type){
+		location.href = "/nemoca/views/cafe/cafeRankingList.yo?rankingType=" + type;
+	}
+</script>
 </head>
 <body>
 	<form action="/nemoca/views/cafe/cafeSearch.le"
@@ -123,55 +138,49 @@ button[type=submit]:hover {
 			<div class="row row-cols-1 row-cols-md-3 g-4">
 				<div class="col">
 					<div class="card h-100">
-						<img src="/nemoca/images/cum22.jpg" class="card-img-top" alt="...">
+						<img src="/nemoca/images/cum22.jpg" class="card-img-top" name="dessert" alt="...">
 						<div class="card-body">
-							<h5 class="card-title">디저트가 맛있는 카페 10선</h5>
-							<p class="card-text">내용</p>
+							<h5 class="card-title" name="dessert">디저트가 맛있는 카페 10선</h5>
 						</div>
 					</div>
 				</div>
 				<div class="col">
 					<div class="card h-100">
-						<img src="/nemoca/images/할아버지1.jpg" class="card-img-top" alt="...">
+						<img src="/nemoca/images/할아버지1.jpg" class="card-img-top" name="hip" alt="...">
 						<div class="card-body">
-							<h5 class="card-title">이색 카페 10선</h5>
-							<p class="card-text">내용</p>
+							<h5 class="card-title" name="hip">힙한 카페 10선</h5>
 						</div>
 					</div>
 				</div>
 				<div class="col">
 					<div class="card h-100">
-						<img src="/nemoca/images/p6.jpg" class="card-img-top" alt="...">
+						<img src="/nemoca/images/p6.jpg" class="card-img-top" name="pet" alt="...">
 						<div class="card-body">
-							<h5 class="card-title">애견 카페 10선</h5>
-							<p class="card-text">내용</p>
+							<h5 class="card-title" name="pet">애견 카페 10선</h5>
 						</div>
 					</div>
 				</div>
 				<div class="col">
 					<div class="card h-100">
-						<img src="/nemoca/images/p7.jpg" class="card-img-top" alt="...">
+						<img src="/nemoca/images/p7.jpg" class="card-img-top" name="ecolor" alt="...">
 						<div class="card-body">
-							<h5 class="card-title">힙한 카페 10선</h5>
-							<p class="card-text">내용</p>
+							<h5 class="card-title" name="ecolor">이색카페 10선</h5>
 						</div>
 					</div>
 				</div>
 				<div class="col">
 					<div class="card h-100">
-						<img src="/nemoca/images/p8.jpg" class="card-img-top" alt="...">
+						<img src="/nemoca/images/p8.jpg" class="card-img-top" name="vegan" alt="...">
 						<div class="card-body">
-							<h5 class="card-title">비건 카페 10선</h5>
-							<p class="card-text">내용</p>
+							<h5 class="card-title" name="vegan">비건 카페 10선</h5>
 						</div>
 					</div>
 				</div>
 				<div class="col">
 					<div class="card h-100">
-						<img src="/nemoca/images/p9.jpg" class="card-img-top" alt="...">
+						<img src="/nemoca/images/p9.jpg" class="card-img-top" name ="lp" alt="...">
 						<div class="card-body">
-							<h5 class="card-title">LP 카페 10선</h5>
-							<p class="card-text">내용</p>
+							<h5 class="card-title" name ="lp">LP 카페 10선</h5>
 						</div>
 					</div>
 				</div>

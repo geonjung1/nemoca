@@ -10,7 +10,7 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			location.href = "/nemoca/views/cafe/cafeRankingList.yo";
+			location.href = "/nemoca/views/cafe/cafeRankingList.yo?rankingType=${rankingType}";
 		</script>
 	</c:if>
 	<c:if test="${result <= 0 }">

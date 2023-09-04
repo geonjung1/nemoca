@@ -155,7 +155,7 @@ table tr td {
 						<c:forEach items="${cllist}" var="cl">
 						<tr>
 							<td><a href="/nemoca/views/cafe/cafeView.yo?user_id=${member.user_id}"></a>${cl.c_name}</td>
-							<td><a href="/nemoca/views/cafe/cafeView.yo?user_id=${member.user_id}"></a>${cl.c_loc}</td>
+							<td><a href="/nemoca/views/cafe/cafeView.yo?user_id=${member.user_id}"></a>${cl.c_addr}</td>
 						</tr>
 						</c:forEach>
 					</table>

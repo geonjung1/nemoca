@@ -17,7 +17,7 @@
 		     , C_NO
 		  FROM CAFE_RE
 		 WHERE C_NO = #{c_no}
-		   AND CR_DEL = 'N'
+		   AND CR_DEL = 'n'
 		 ORDER BY CR_NO
 	</select>
 	
@@ -32,7 +32,7 @@
 		  FROM CAFE_RE
 		 WHERE CR_NO = #{cr_no}
 		   AND C_NO = #{c_no}
-		   AND CR_DEL = 'N'
+		   AND CR_DEL = 'n'
 		 ORDER BY CR_NO
 	</select>
 	
@@ -52,7 +52,7 @@
 		    , #{cr_content}
 		    , #{cr_grade}
 		    , SYSDATE
-		    , 'N', SYSDATE
+		    , 'n', SYSDATE
 		    , #{user_id}
 		    , #{c_no}
 		)
@@ -68,7 +68,7 @@
 	
 	<update id="deleteCafeReview" parameterType="cafereview">
 		UPDATE CAFE_RE
-		   SET CR_DEL      = 'Y'
+		   SET CR_DEL      = 'y'
 		     , CR_DEL_DATE = SYSDATE
 		 WHERE CR_NO = #{cr_no}
 		   AND C_NO = #{c_no}

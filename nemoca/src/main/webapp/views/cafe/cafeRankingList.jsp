@@ -62,13 +62,13 @@
 	color: #9B9B9B;
 }
 .cafeLike{
-	
+	font-weight: bold;
+	color: #F7840A;
 }
 .cafeLikeImg{
 	width: 40px;
 	height: 40px;
 	cursor:pointer;
-	
 }
 .cafeUrl{
 	color: #888888;
@@ -85,23 +85,54 @@
 
 <script>
 $(document).ready(function () {
+	var title = "네모카 카페 랭킹";
+	var title_sub = "\"nemoca 회원이 직접뽑은 순위 TOP 10!!\"";
+	
+	<c:if test="${rankingType eq 'dessert'}">
+	title = "디저트가 맛있는 카페 랭킹";
+	title_sub = "\"nemoca 회원이 직접뽑은 디저트가 맛있는 TOP 5!!\"";
+	</c:if>
+	<c:if test="${rankingType eq 'hip'}">
+	title = "힙한 카페 랭킹";
+	title_sub = "\"nemoca 회원이 직접뽑은 힙한 TOP 5!!\"";
+	</c:if>
+	<c:if test="${rankingType eq 'pet'}">
+	title = "애견 카페 랭킹";
+	title_sub = "\"nemoca 회원이 직접뽑은 애견 카페 TOP 5!!\"";
+	</c:if>
+	<c:if test="${rankingType eq 'ecolor'}">
+	title = "이색 카페 랭킹";
+	title_sub = "\"nemoca 회원이 직접뽑은 이색 카페 TOP 5!!\"";
+	</c:if>
+	<c:if test="${rankingType eq 'vegan'}">
+	title = "비건 카페 랭킹";
+	title_sub = "\"nemoca 회원이 직접뽑은 비건 카페 TOP 5!!\"";
+	</c:if>
+	<c:if test="${rankingType eq 'lp'}">
+	title = "LP 카페 랭킹";
+	title_sub = "\"nemoca 회원이 직접뽑은 LP 카페 TOP 5!!\"";
+	</c:if>
+	
+	$("#title").text(title);
+	$("#title_sub").text(title_sub);
+	
 	$('.cafeLikeImg').on('click', function(e) {
 		var c_no = $(this).attr("id").replace("_img","");
 		var user_id = "${id}";
 		if(user_id == null || user_id.length == 0 || user_id.trim() == ""){
 			alert("로그인 후 이용해 주세요.");
+			location.href = "/nemoca/views/member/loginForm.pa?user_id=";
 			return;
 		}
 		var like_yn = "";
-		if($(this).attr("src") == "/nemoca/images/like.png"){
-			$(this).attr("src", "/nemoca/images/unlike.png");
+		if($(this).attr("src") == "/nemoca/images/star-fill.svg"){
+			$(this).attr("src", "/nemoca/images/star.svg");
 			like_yn = "N";
 		}else{
-			$(this).attr("src", "/nemoca/images/like.png");
+			$(this).attr("src", "/nemoca/images/star-fill.svg");
 			like_yn = "Y";
 		}
-		
-		location.href = "/nemoca/views/cafe/cafeLikeResult.yo?c_no=" + c_no + "&user_id=" + user_id + "&like_yn=" + like_yn;
+		location.href = "/nemoca/views/cafe/cafeDoLike.yo?c_no=" + c_no + "&user_id=" + user_id + "&like_yn=" + like_yn + "&rankingType=${rankingType}";
 	});
 	
 	$('.cafeImage').on('click', function(e) {
@@ -124,8 +155,8 @@ $(document).ready(function () {
 <body>
 <div class="body">
    <div class="rankingTitle">
-      <div class="rankingTitle1">네모카 카페 랭킹</div>
-      <div class="rankingTitle2">"nemoca 회원이 직접뽑은 순위 TOP 10!!"</div>
+      <div class="rankingTitle1" id="title"></div>
+      <div class="rankingTitle2" id="title_sub"></div>
    </div>
    <hr>
    </div>
@@ -153,12 +184,16 @@ $(document).ready(function () {
 						</td>
 						<td>
 							<span class="cafeLike">
+								<center>
 								<c:if test="${cafe.like_yn eq 'y'}">
-									<img id="${cafe.c_no}_img" class="cafeLikeImg" src="/nemoca/images/like.png">
+									<img id="${cafe.c_no}_img" class="cafeLikeImg" src="/nemoca/images/star-fill.svg">
 								</c:if>
 								<c:if test="${cafe.like_yn eq 'n'}">
-									<img id="${cafe.c_no}_img" class="cafeLikeImg" src="/nemoca/images/unlike.png">
+									<img id="${cafe.c_no}_img" class="cafeLikeImg" src="/nemoca/images/star.svg">
 								</c:if>
+								<br/>
+								I want U
+								</center>
 							</span>
 						</td>
 					</tr>
@@ -201,7 +236,9 @@ $(document).ready(function () {
 							&nbsp;
 						</td>
 						<td>
-							<span id="${cafe.c_no}_url" class="cafeUrl">${cafe.c_name}></span>
+							<span id="${cafe.c_no}_url" class="cafeUrl">
+								<center>${cafe.c_name} 상세보기></center>
+							</span>
 						</td>
 					</tr>
 					<tr height="30px">

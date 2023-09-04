@@ -242,6 +242,7 @@ $(document).ready(function () {
 		var user_id = "${id}";
 		if(user_id == null || user_id.length == 0 || user_id.trim() == ""){
 			alert("로그인 후 이용해 주세요.");
+			location.href = "/nemoca/views/member/loginForm.pa?user_id=";
 			return;
 		}
 		

@@ -41,13 +41,9 @@ textarea{
 .buttonTable {
 	display: flex;
 	justify-content: center;
-	padding-bottom: 200px;
+	padding-bottom: 200px;	
+}
 
-	
-}
-.cafeStar{
-	color: #9B9B9B;
-}
 .cafeStarImg {
 	width: 40px;
 	height: 40px;
@@ -76,7 +72,7 @@ textarea{
 }
 
 .cr_gradeText{
-	color: #9B9B9B;
+	color: #FF792A;
 }
 .cr_grade{
 	color: #9B9B9B;
@@ -97,14 +93,6 @@ textarea{
 						<span class="ex">&nbsp;에 대한 솔직한 리뷰를 써주세요.</span>
 					</td>
 					<td>
-						<span class="cr_gradeText">평점&nbsp;</span>
-						<select class="cr_grade" name="cr_grade" required="required">
-							<option value="5" selected>5점</option>
-							<option value="4">4점</option>
-							<option value="3">3점</option>
-							<option value="2">2점</option>
-							<option value="1">1점</option>
-						</select>
 					</td>
 				</tr>
 			</table>
@@ -116,9 +104,14 @@ textarea{
 				</tr>
 				<tr>
 					<td	height="30px">
-						<span class="cafeStar">
-							<img id="${cafe.c_no}_img" class="cafeStarImg" src="/nemoca/images/like.png">&nbsp;평가해주세요.
-						</span>
+					<span class="cr_gradeText">&nbsp;&nbsp;평점&nbsp;</span>
+						<select class="cr_grade" name="cr_grade" required="required">
+							<option value="5" selected>5점</option>
+							<option value="4">4점</option>
+							<option value="3">3점</option>
+							<option value="2">2점</option>
+							<option value="1">1점</option>
+						</select>
 					</td>
 				</tr>
 			</table>

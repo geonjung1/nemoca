@@ -130,17 +130,17 @@ ul {
 			</a>
 			<ul class="main-menu">
 				<li><a class="head" href="/nemoca/views/cafe/cafeRankingList.yo">
-						<img src='/nemoca/images/coffee.PNG' width="40px">카페 구경하기
+						카페 구경하기
 				</a></li>
 				
 				<c:if test="${id eq 'master'}">
 				<li><a class="head" href="/nemoca/views/cafe/cafeRegist.yo">
-						<img src='/nemoca/images/coffee.PNG' width="40px">카페 등록하기
+						카페 등록하기
 				</a></li>
 				</c:if>
 				
 				<li><a class="head" href="/nemoca/views/board/boardMain.ha">
-						<img src='/nemoca/images/coffee.PNG' width="40px">게시판
+						게시판
 				</a></li>
 			</ul>
 			<ul class="right-menu">

@@ -11,8 +11,8 @@ import dao.Board_likeDao;
 import dao.Board_reDao;
 import dao.CafeLikeDao;
 import dao.CafeRankingDao;
-import dao.CafeViewDao;
 import dao.MemberDao;
+
 import model.Board;
 import model.Board_like;
 import model.Board_re;
@@ -20,8 +20,7 @@ import model.Cafe;
 import model.Cafe_like;
 import model.Member;
 import service.CommandProcess;
-import service.cafe.CafeLike;
-import service.cafe.CafeView;
+
 
 public class MyPageForm implements CommandProcess {
 
@@ -35,18 +34,17 @@ public class MyPageForm implements CommandProcess {
 			MemberDao md = MemberDao.getInstance();
 			Member member = md.select(user_id);
 			
-			CafeViewDao cd = CafeViewDao.getInstance();
 			CafeLikeDao cl = CafeLikeDao.getInstance();
+			
+			String c_no = request.getParameter("c_no");
+			String like_yn = request.getParameter("like_yn");
+			
+			int result = cl.doCafeLike(c_no, user_id, like_yn);
+			
 			List<Cafe_like> cllist = cl.myPage(user_id);
-			for(Cafe_like cafeLike:cllist) {
-				int c_no = cafeLike.getC_no();
-				Cafe cafe = cd.selectCafe(c_no);
-				cafeLike.setC_name(cafe.getC_name());
-				cafeLike.setC_loc(cafe.getC_loc());
-			}
-				System.out.println("cllist = "+cllist );
 			
 			
+				
 			BoardDao bd = BoardDao.getInstance();
 			List<Board> bdList = bd.myPage(user_id);
 			
@@ -62,9 +60,9 @@ public class MyPageForm implements CommandProcess {
 			List<Board_re> brdList = brd.myPage(user_id);
 			
 			request.setAttribute("member", member);
+			request.setAttribute("cllist", cllist);
 			request.setAttribute("bdlist", bdList); 
 			request.setAttribute("brdlist", brdList);
-			request.setAttribute("cllist", cllist);
 			request.setAttribute("bllist", bllist);
 			
 		}

@@ -56,6 +56,7 @@
 		INSERT INTO CAFE
 		(
 		      C_NO
+		    , C_TYPE
 		    , C_NAME, C_ADDR, C_ADDR_NEW, C_LOC, C_TEL
 		    , C_PRICE, C_OPTIME
 		    , C_IMG1, C_IMG2, C_IMG3, C_MENU1, C_MENU2, C_MENU3
@@ -66,6 +67,7 @@
 		)
 		VALUES(
 		      #{c_no}
+		    , #{c_type}
 		    , #{c_name}, #{c_addr}, #{c_addr_new}, #{c_loc}, #{c_tel}
 		    , #{c_price}, #{c_optime}
 		    , #{c_img1}, #{c_img2}, #{c_img3}, #{c_menu1}, #{c_menu2}, #{c_menu3}
@@ -79,6 +81,7 @@
 	<update id="updateCafe" parameterType="cafe">
 		UPDATE CAFE
 		   SET C_NAME     = #{c_name}
+		     , C_TYPE     = #{c_type}
 		     , C_ADDR     = #{c_addr}
 		     , C_ADDR_NEW = #{c_addr_new}
 		     , C_LOC      = #{c_loc}
@@ -100,15 +103,17 @@
 		     , C_DEL_DATE = SYSDATE
 		 WHERE C_NO = #{c_no}
 	</update>
-	
+			
 			<!-- 마이페이지 -->
-	<select id="myPage" parameterType="string" resultType="cafe">
+	<select id="myPage" parameterType="string" resultType="cafelike">
 		select * from (select rowNum rn, e.* from (
-		select * from CAFE where user_id = #{user_id} order by c_no desc) e)
+		select * from cafe_like where user_id = #{user_id} order by c_no desc) e)
 		where rn between 1 and 4
 	</select>
 		<!-- 검색 -->
 	<select id="search" parameterType="string" resultType="cafe">
 	   select * from CAFE where c_name like '%'||#{srch}||'%' or c_loc like '%'||#{srch}||'%' or c_addr like '%'||#{srch}||'%' or c_addr_new like '%'||#{srch}||'%' 
 	</select>
+	
+		
 </mapper>

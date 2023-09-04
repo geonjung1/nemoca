@@ -49,14 +49,10 @@ public class CafeLikeDao {
 			return session.update("cafe.doUnlike", paramMap);
 		}
 	}
+
 	public List<Cafe_like> myPage(String user_id) {
 		// TODO Auto-generated method stub
-		return session.selectList("cafe.myPage", user_id);
+		return session.selectList(user_id);
 	}
-	public Cafe selectCafe(Integer c_no) {
-		Cafe cafe = new Cafe();
-		cafe.setC_no(c_no);
-		
-		return (Cafe)session.selectOne("cafe.selectCafe", cafe);
-	}
+
 }
