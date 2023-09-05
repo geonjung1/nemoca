@@ -53,8 +53,9 @@ public class Board_likeDao {
 		hm.put("b_no", b_no);
 		return (int) session.delete("board_likens.delete", hm);	
 	}
+	
 	public List<Board_like> myPage(String user_id) {
-		
+		// TODO Auto-generated method stub
 		return session.selectList("board_likens.myPage", user_id);
 	}
 	

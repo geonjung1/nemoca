@@ -9,18 +9,14 @@ import javax.servlet.http.HttpSession;
 import dao.BoardDao;
 import dao.Board_likeDao;
 import dao.Board_reDao;
-import dao.CafeLikeDao;
 import dao.CafeRankingDao;
 import dao.MemberDao;
-
 import model.Board;
 import model.Board_like;
 import model.Board_re;
 import model.Cafe;
-import model.Cafe_like;
 import model.Member;
 import service.CommandProcess;
-
 
 public class MyPageForm implements CommandProcess {
 
@@ -34,17 +30,9 @@ public class MyPageForm implements CommandProcess {
 			MemberDao md = MemberDao.getInstance();
 			Member member = md.select(user_id);
 			
-			CafeLikeDao cl = CafeLikeDao.getInstance();
-			
-			String c_no = request.getParameter("c_no");
-			String like_yn = request.getParameter("like_yn");
-			
-			int result = cl.doCafeLike(c_no, user_id, like_yn);
-			
-			List<Cafe_like> cllist = cl.myPage(user_id);
-			
-			
-				
+			CafeRankingDao cr = CafeRankingDao.getInstance();
+			List<Cafe> cllist = cr.myPage(user_id);
+						
 			BoardDao bd = BoardDao.getInstance();
 			List<Board> bdList = bd.myPage(user_id);
 			
@@ -60,11 +48,11 @@ public class MyPageForm implements CommandProcess {
 			List<Board_re> brdList = brd.myPage(user_id);
 			
 			request.setAttribute("member", member);
-			request.setAttribute("cllist", cllist);
 			request.setAttribute("bdlist", bdList); 
 			request.setAttribute("brdlist", brdList);
+			request.setAttribute("cllist", cllist);
 			request.setAttribute("bllist", bllist);
-			
+		
 		}
 		return "myPageForm";
 		

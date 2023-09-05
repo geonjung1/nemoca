@@ -388,7 +388,7 @@ $(document).ready(function () {
 		<tr height="10px"><td>&nbsp;</td></tr>
 		<tr>
 			<td rowspan="2">
-				<div class="reviewImageDiv"><img class="reviewImage" src="/nemoca/images/${cafeReview.user_img}"></div>
+				<div class="reviewImageDiv"><img class="reviewImage" src="/nemoca/upload/${cafeReview.user_img}"></div>
 			</td>
 			<td>
 				<div class="reviewDateTime">${cafeReview.cr_reg_date}</div>

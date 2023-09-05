@@ -1,12 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Diphylleia&display=swap')
+	;
+/* font-family: 'Diphylleia', serif; */
+* {
+	font-family: "Diphylleia";
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 .update {
 	text-align: center;
 	text-align: center;
@@ -59,21 +70,26 @@ section {
 }
 
 .button {
-	width: 190px;
-	height: 35px;
-	background-color: black;
-	color: white;
-	font-weight: bold;
-	margin: 0 auto;
-	color: #fff;
-	font-size: 24px;
-	display: inline-block;
-	height: 65px;
-	line-height: 65px;
+	width: 120px;
+	padding: 15px 0;
+	padding-top: 15px;
+	padding-right: 0px;
+	padding-bottom: 15px;
+	padding-left: 0px;
 	margin-bottom: 10px;
-	text-align: center;
-	text-decoration: none;
-	cursor: pointer;
+}
+
+.btnGray60 {
+	color: white;
+	border: 1px solid #666666;
+	min-width: 80px;
+	height: 60px;
+	border-radius: 5px;
+	padding: 15px 28px;
+	font-size: 16px;
+	line-height: 18px;
+	font-weight: 700;
+	background-color: #222222;
 }
 
 .essen {
@@ -153,13 +169,58 @@ ul {
 	text-align: left;
 }
 
-#del-btn{
-    text-align: center;
-    color: blue;
-    font-size: 13px;
-    cursor: pointer;
+#del-btn {
+	text-align: center;
+	color: blue;
+	font-size: 13px;
+	cursor: pointer;
 }
 
+option {
+	text-align: center;
+}
+
+optgroup {
+	text-align: center;
+}
+
+/* 프로필 */
+.mem {
+	background: #fff;
+	border-bottom: 1px solid #ddd;
+	color: black;
+	font-size: 18px;
+	line-height: 24px;
+	text-align: center;
+	padding: 30px 20px 30px;
+}
+
+.mem img {
+	width: 250px;
+	height: 250px;
+}
+
+/* 파일 업로드 디자인 */
+.pro-btn {
+	position: relative;
+	overflow: hidden;
+}
+
+.pro-btn input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	min-width: 100%;
+	min-height: 100%;
+	font-size: 100px;
+	text-align: center;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: inherit;
+	display: block;
+}
 </style>
 
 
@@ -204,58 +265,76 @@ ul {
 			alert("탈퇴가 취소되었습니다.");
 	}
 	
+	/* 핸드폰번호 자동 하이픈 추가 */
+	const autoHyphen = (target) => {
+		 target.value = target.value
+		   .replace(/[^0-9]/g, '')
+		   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+		}	
 	
 </script>
 
 </head>
 <body>
-<form action="update.pa?prevUrl=${prevUrl }" method="post" name="frm" onsubmit="chk()">
-<div class="update">회원정보 수정</div>
-	<div class="grid">
-	<button id="del-btn" onclick="del()">회원탈퇴</button>
+	<form action="update.pa?prevUrl=${prevUrl }" method="post" name="frm"
+		onsubmit="chk()" enctype="multipart/form-data">
+		<div class="update">회원정보 수정</div>
+		<div class="grid">
 			<div class="box">
 				<div class="inf">
 
-				<!-- 아이디 -->
-					<input type="text" name="user_id" placeholder="${member.user_id }" 
-						readonly="readonly" value="${member.user_id }" placeholder="${member.user_id }">
+					<!-- 프로필 사진 -->
+					<div class="mem">
+						<img src="/nemoca/images/basic_profile.png" alt=""> <br>
+						<span class="pro-btn"> 이미지를 업로드 하려면 클릭하세요. <input
+							type="file" name="user_img">
+						</span>
+					</div>
+
+					<!-- 아이디 -->
+					<input type="text" name="user_id" placeholder="${member.user_id }"
+						readonly="readonly" value="${member.user_id }"
+						placeholder="${member.user_id }">
 				</div>
-				
+
 				<!-- 닉네임 -->
 				<div class="inf">
-					<input type="text" name="nickname" value="${member.nickname }" placeholder="${member.nickname }"
-						onChange="chkNick()">
-					<input type="hidden" name="checked_nick" value="">
+					<input type="text" name="nickname" value="${member.nickname }"
+						placeholder="${member.nickname }" onChange="chkNick()"> <input
+						type="hidden" name="checked_nick" value="">
 					<div class="chk-msg" id="err"></div>
 				</div>
-				
+
 				<!-- 휴대폰 번호 -->
 				<div class="inf">
-					<input type="text" name="tel" placeholder="${member.tel }" value="${member.tel }">
+					<input type="text" oninput="autoHyphen(this)" name="tel"
+						maxlength="13" placeholder="${member.tel }" value="${member.tel }">
 				</div>
-				
+
 				<!-- 비밀번호 -->
 				<div class="inf">
-					<input type="password" name="pass" placeholder="비밀번호" required="required">
+					<input type="password" name="pass" placeholder="비밀번호"
+						required="required">
 				</div>
-				
+
 				<!-- 비밀번호 확인 -->
 				<div class="inf">
-					<input type="password" name="pass2" placeholder="비밀번호 확인" required="required" onChange="chkPassword()">
+					<input type="password" name="pass2" placeholder="비밀번호 확인"
+						required="required" onChange="chkPassword()">
 				</div>
-				
+
 				<!-- 연령대 선택 -->
 				<div class="inf">
 					<select class="pl on" onclick="select()" name="age">
-					<ul class="listbox" id="listbox">
-						<li><option class="list">연령대 선택</option></li>
-						<li><option class="list" value="10">10대</option></li>
-						<li><option class="list" value="20">20대</option></li>
-						<li><option class="list" value="30">30대</option></li>
-						<li><option class="list" value="40">40대</option></li>
-						<li><option class="list" value="50">50대</option></li>
-						<li><option class="list" value="60">60대 이상</option></li>
-					</ul>
+						<ul class="listbox" id="listbox">
+							<li><optgroup label="연령대선택"></optgroup>
+							<li><option class="list" value="10">10대</option></li>
+							<li><option class="list" value="20">20대</option></li>
+							<li><option class="list" value="30">30대</option></li>
+							<li><option class="list" value="40">40대</option></li>
+							<li><option class="list" value="50">50대</option></li>
+							<li><option class="list" value="60">60대 이상</option></li>
+						</ul>
 					</select>
 				</div>
 			</div>
@@ -264,9 +343,10 @@ ul {
 			<b>입력란을 꼭 입력해주셔야 수정이 가능합니다.</b>
 		</div>
 		<div class="button_box">
-		<input type="submit" value="회원정보 수정" class="button">
+			<input type="submit" value="정보수정" class="button btnGray60"> <input
+				type="submit" value="회원탈퇴" class="button btnGray60" onclick="del()">
 		</div>
-	</section>
-</form>
+		</section>
+	</form>
 </body>
 </html>

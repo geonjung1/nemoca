@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import dao.BoardDao;
 import dao.Board_likeDao;
 import dao.Board_reDao;
+import dao.MemberDao;
 import model.Board;
 import model.Board_re;
 import service.CommandProcess;
@@ -26,7 +27,11 @@ public class BoardView implements CommandProcess {
 
 		// 데이터 가져오기
 		Board board = bd.select(b_no);
+		
+		
 		String user_id = board.getUser_id();
+		MemberDao md = MemberDao.getInstance();
+			
 
 		// 회원테이블에서 닉네임 데이터 가져오기
 	//	String nickname = board.getUser_ID(); // board에 저장된 mno
@@ -97,8 +102,10 @@ public class BoardView implements CommandProcess {
 	//	request.setAttribute("list2", list2);
 		request.setAttribute("board_re_cnt", board_re_cnt);
 		request.setAttribute("imgSrc", imgSrc);
+	//	request.setAttribute("user_img", user_img);
 		
 	//	request.setAttribute("result", result);
+		
 		
 		return "boardView";
 	}

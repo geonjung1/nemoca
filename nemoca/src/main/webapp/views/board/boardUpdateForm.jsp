@@ -29,8 +29,7 @@
 </head>
 <body class="p-3 m-0 border-0 bd-example m-0 border-0">
 	<div class="board_title">
-		<img src='/nemoca/images/coffee.PNG' width="80px">게시글 수정하기<img
-			src='/nemoca/images/coffee.PNG' width="80px">
+		게시글 수정하기
 		<div onclick="location.href='/nemoca/views/board/boardWriteForm.ha'">
 			<button type="button" class="btn btn-dark">글쓰기</button>
 		</div>
@@ -51,7 +50,7 @@
 							<p>
 							
 							<div class="input-group mb-3">
-								<input type="file" class="form-control" name="b_img1" required="required">
+								<input type="file" class="form-control" name="b_img1" >${board.b_img1 }
 							</div>
 							<p>
 							<div class="input-group flex-nowrap">

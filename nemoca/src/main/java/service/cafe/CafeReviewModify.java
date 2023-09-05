@@ -26,7 +26,7 @@ public class CafeReviewModify implements CommandProcess {
 		Cafe cafe = cvd.selectCafe(Integer.parseInt(c_no));
 		request.setAttribute("cafe", cafe);
 
-		 
+		
 		return "cafeReviewModify";
 	}
 

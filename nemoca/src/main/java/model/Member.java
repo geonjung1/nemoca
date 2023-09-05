@@ -15,7 +15,6 @@ public class Member {
 	private String gender;
 	private Date join_date;
 	private String del;
-	private Date del_date;
 	
 	
 	public String getUser_id() {
@@ -90,11 +89,6 @@ public class Member {
 	public void setDel(String del) {
 		this.del = del;
 	}
-	public Date getDel_date() {
-		return del_date;
-	}
-	public void setDel_date(Date del_date) {
-		this.del_date = del_date;
-	}
+
 	
 }

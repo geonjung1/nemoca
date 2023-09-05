@@ -36,14 +36,6 @@
 		 ORDER BY C.CAFE_LIKE_RANK, C.C_NAME
 	</select>
 	
-	
-	<select id="cafeRankingList222" parameterType="cafe" resultType="cafe">
-		select c.* from (select c.*, rank() over(order by c.like_count desc, c.c_name) as cafe_like_rank from 
-		    (select cafe.*, nvl((select count(1) from cafe_like where c_no = cafe.c_no),0) as like_count, 
-		    case when exists (select 1 from cafe_like where user_id = #{user_id} and c_no = cafe.c_no) then 'y' else 'n' end as like_yn, 
-		    case when (select count(1) from cafe_re where c_no = cafe.c_no and cr_del = 'n') = 0 then '미평가' else 
-		    trim(to_char( (select avg(cr_grade) from cafe_re where c_no = cafe.c_no and cr_del = 'n'
-		    <if test="c_type != null and c_type != 'ALL'">and c_type = #{c_type}</if>), '9.9' )) end as star 
-		    from cafe where c_del = 'n') c) c order by c.cafe_like_rank, c.c_name
-	</select>
+
+
 </mapper>

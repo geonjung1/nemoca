@@ -12,7 +12,15 @@ public class Board_re {
 	private int br_ref_step;
 	private Date br_reg_date;
 	private String br_del;
+	private String user_img;
 	
+	
+	public String getUser_img() {
+		return user_img;
+	}
+	public void setUser_img(String user_img) {
+		this.user_img = user_img;
+	}
 	public int getBr_re_no() {
 		return br_re_no;
 	}

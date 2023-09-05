@@ -28,7 +28,8 @@ public class CafeDoRegist implements CommandProcess {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
+		String c_type = mr.getParameter("c_type");
 		String c_name = mr.getParameter("c_name");
 		String c_addr = mr.getParameter("c_addr");
 		String c_addr_new = mr.getParameter("c_addr_new");
@@ -53,6 +54,7 @@ public class CafeDoRegist implements CommandProcess {
 		// 3.저장할 정보를 DTO에 담는다.
 		Cafe cafe = new Cafe();
 		cafe.setC_no(c_no);
+		cafe.setC_type(c_type);
 		cafe.setC_name(c_name);
 		cafe.setC_addr(c_addr);
 		cafe.setC_addr_new(c_addr_new);
@@ -64,7 +66,7 @@ public class CafeDoRegist implements CommandProcess {
 		
 		
 		// 4. File 이미지 정보 변경
-		String fileName, uploadFileName, changeFileName, sourceFileName; 
+		String fileName, uploadFileName, changeFileName, sourceFileName;
 		String fileExtend;
 		File uploadIamgeFile, changeIamgeFile, sourceImageFile;
 		for(int i=1; i<=5; i++) {

@@ -125,13 +125,13 @@ ul {
 	<header>
 		<br>
 		<nav class="main-nav">
-			<a class="main-nav" href="/nemoca/views/display/main.ha"> <img
+			<a class="main-nav" href="/nemoca/views/display/main.le"> <img
 				src='/nemoca/images/home_logo.png'>
 			</a>
 			<ul class="main-menu">
-				<li><a class="head" href="/nemoca/views/cafe/cafeRankingList.yo">
+				<li><a class="head" href="/nemoca/views/cafe/cafeRankingList.yo?rankingType=ALL">
 						카페 구경하기
-				</a></li>
+				</a>
 				
 				<c:if test="${id eq 'master'}">
 				<li><a class="head" href="/nemoca/views/cafe/cafeRegist.yo">
@@ -145,8 +145,7 @@ ul {
 			</ul>
 			<ul class="right-menu">
 				<li><a id="list">
-					 <i class="fas fa-shopping-cart"> 
-					현재 로그인한 id는 "${user_id }"입니다.<img src='/nemoca/images/login2.PNG' width="40px">
+					 <i class="fas fa-shopping-cart"><img src='/nemoca/images/login2.PNG' width="40px">
 				</i></li>
 			</ul>
 		</nav>

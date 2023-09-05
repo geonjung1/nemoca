@@ -25,7 +25,6 @@
 }
 
 .poto {
-	/* background-image: url("/nemoca/images/am.jpg"); */
 	display: inline-block;
 	border: 1px solid;
 	color: white;
@@ -113,11 +112,6 @@ table tr td {
 	table-layout: fixed;
 	overflow: hidden;
 }
-.pt {
-	display:block;
-	margin:auto;
-	
-}
 
 </style>
 
@@ -127,13 +121,14 @@ table tr td {
 		<div class="contener">
 			<div class="in">
 				<ul class="var">
-					<li><div><img class="poto" src="/nemoca/images/am.jpg"></div></li>
-					<li><h2>${member.nickname}님,환영합니다.</h2> <a class="pt"
-						href="/nemoca/views/member/updateForm.pa?user_id=${member.user_id}">
-						<c:if test="${member.user_id != master }">
+						<li><div><img class="poto" src="/nemoca/upload/${member.user_img }" alt="프로필사진"></div></li>
+					<li><h2>${member.nickname}님,환영합니다.</h2>
+						<c:if test="${member.user_id != 'master' }">
+						<a href="/nemoca/views/member/updateForm.pa?user_id=${member.user_id}">
 							<span>내 정보 수정</span>
 						</c:if>
-						<c:if test="${member.user_id == master }">
+						<c:if test="${member.user_id == 'master' }">
+						<a href="/nemoca/views/master/memberList.pa?user_id=${member.user_id}">
 							<span>회원 목록 관리</span>
 						</c:if>
 					</a></li>
@@ -144,13 +139,13 @@ table tr td {
 			<ul class="content_main">
 				<li class="content_box">
 					<h3>카페 좋아요</h3>
-					 <c:if test="${cafeLike.size() == 0}">
+					 <c:if test="${cllist.size() == 0}">
 						<p>좋아요한 카페가 없습니다</p>
-					</c:if> <c:if test="${cafeLike.size() != 0}">
+					</c:if> <c:if test="${cllist.size() != 0}">
 					<table>
 						<tr>
-							<th>전시명</th>
-							<th>장소</th>
+							<th>카페이름</th>
+							<th>주소</th>
 						</tr>
 						<c:forEach items="${cllist}" var="cl">
 						<tr>

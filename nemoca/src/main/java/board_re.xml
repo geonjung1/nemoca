@@ -27,7 +27,7 @@
 
 	<!-- 댓글 조회 -->
 	<select id="list" parameterType="integer" resultType="board_re">
-		select * from (select rowNum rn, e.* from (select r.*, email, name
+		select * from (select rowNum rn, e.* from (select r.*, user_img, name
 		from board_re r, member m where r.user_id = m.user_id 
 		and r.b_no = #{b_no} and r.br_del='n' order by br_ref, br_ref_step) e) order by rn
 	</select>
@@ -62,6 +62,6 @@
 	<select id="myPage" parameterType="string" resultType="board_re">
 		select * from (select rowNum rn, e.* from (
 		select * from board_re where user_id = #{user_id} and br_del='n' order by br_re_no desc) e)
-		where rn between 1 and 4
+		where rn between 1 and 5
 	</select>
 </mapper>

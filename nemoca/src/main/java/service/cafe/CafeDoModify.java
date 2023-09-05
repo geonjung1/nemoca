@@ -19,7 +19,7 @@ public class CafeDoModify implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		// 1.화면에서 입력한 카페 정보를 서버에서 파라미터 수신한다.
 		String realPath = request.getSession().getServletContext().getRealPath("/images");
-//		String sourcePath = "C:/RDS/workspace/nemoca/src/main/webapp/images";
+//		String sourcePath = "C:/jsp/workspace/nemoca/src/main/webapp/images";
 		int maxSize = 1024 * 1024 * 10; // 최대 사이즈 (10mb)
 		MultipartRequest mr = null;
 		
@@ -30,6 +30,7 @@ public class CafeDoModify implements CommandProcess {
 		}
 
 		String c_no = mr.getParameter("c_no");
+		String c_type = mr.getParameter("c_type");
 		String c_name = mr.getParameter("c_name");
 		String c_addr = mr.getParameter("c_addr");
 		String c_addr_new = mr.getParameter("c_addr_new");
@@ -43,6 +44,7 @@ public class CafeDoModify implements CommandProcess {
 		// 2.저장할 정보를 DTO에 담는다.
 		Cafe cafe = new Cafe();
 		cafe.setC_no(Integer.parseInt(c_no));
+		cafe.setC_type(c_type);
 		cafe.setC_name(c_name);
 		cafe.setC_addr(c_addr);
 		cafe.setC_addr_new(c_addr_new);

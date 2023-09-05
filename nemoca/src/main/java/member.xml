@@ -14,22 +14,23 @@
 	
 	<!-- 회원 가입 -->
 	<insert id="insert" parameterType="member">
-		insert into member values (#{user_id}, #{name}, #{nickname}, #{email}, #{tel}, #{pass},
-		<choose>
+		insert into member values (#{user_id}, #{name}, #{nickname}, #{email},
+		 #{tel}, #{pass}, 'basic_profile.png',
+	<!-- 	<choose>
 			<when test="user_img == '' or user_img == null">null</when>
 			<otherwise>#{user_img}</otherwise>
-		</choose>,
-		#{addr}, #{age}, #{gender}, sysdate, 'n', sysdate)
+		</choose>, -->
+		#{addr}, #{age}, #{gender}, sysdate, 'n')
 	</insert>
 	
 	<!-- 전체회원 정보 조회 -->
 	<select id="list" parameterType="hashmap" resultType="member">
-		select * from (select rowNum rn, a*from (select * from member order by user_id desc) a)
+		select * from (select rowNum rn, a.*from (select * from member order by user_id desc) a)
 			where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<!-- 총 인원수 조회 -->
-	<select id="getTotal" parameterType="integer">
+	<select id="getTotal" resultType="integer">
 		select count(*) from member
 	</select>
 	
@@ -45,11 +46,22 @@
 	
 	<!-- 회원정보 수정 -->
 	<update id="update" parameterType="member">
-		update member set nickname=#{nickname}, tel=#{tel}, pass=#{pass}, age=#{age} where user_id=#{user_id}
+		update member set 
+		<if test="user_img != null and user_img != ''">
+			user_img=#{user_img},
+		</if>
+		 nickname=#{nickname}, tel=#{tel}, pass=#{pass}, age=#{age} where user_id=#{user_id}
 	</update>
 	
 	<!-- 회원 탈퇴 -->
 	<update id="delete">
 		update member set del='y' where user_id=#{user_id}
 	</update>
+
+	<!-- user_id로 user_img 조회 -->
+	<select id="selectUser_img" parameterType="integer" resultType="string">
+		select user_img from member where user_id=#{user_id}
+	</select>
+
+
 </mapper> 

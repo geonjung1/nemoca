@@ -8,8 +8,7 @@
 </head>
 <body>
 <script type="text/javascript">
-	// location.href="/nemoca/views/display/dpMain.do?tab=1";
-	location.href="/nemoca/views/display/main.ha";
+	location.href="/nemoca/views/display/main.le";
 </script>
 </body>
 </html>

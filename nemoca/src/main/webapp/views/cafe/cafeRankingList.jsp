@@ -96,22 +96,6 @@ $(document).ready(function () {
 	title = "힙한 카페 랭킹";
 	title_sub = "\"nemoca 회원이 직접뽑은 힙한 TOP 5!!\"";
 	</c:if>
-	<c:if test="${rankingType eq 'pet'}">
-	title = "애견 카페 랭킹";
-	title_sub = "\"nemoca 회원이 직접뽑은 애견 카페 TOP 5!!\"";
-	</c:if>
-	<c:if test="${rankingType eq 'ecolor'}">
-	title = "이색 카페 랭킹";
-	title_sub = "\"nemoca 회원이 직접뽑은 이색 카페 TOP 5!!\"";
-	</c:if>
-	<c:if test="${rankingType eq 'vegan'}">
-	title = "비건 카페 랭킹";
-	title_sub = "\"nemoca 회원이 직접뽑은 비건 카페 TOP 5!!\"";
-	</c:if>
-	<c:if test="${rankingType eq 'lp'}">
-	title = "LP 카페 랭킹";
-	title_sub = "\"nemoca 회원이 직접뽑은 LP 카페 TOP 5!!\"";
-	</c:if>
 	
 	$("#title").text(title);
 	$("#title_sub").text(title_sub);
@@ -132,6 +116,7 @@ $(document).ready(function () {
 			$(this).attr("src", "/nemoca/images/star-fill.svg");
 			like_yn = "Y";
 		}
+		
 		location.href = "/nemoca/views/cafe/cafeDoLike.yo?c_no=" + c_no + "&user_id=" + user_id + "&like_yn=" + like_yn + "&rankingType=${rankingType}";
 	});
 	

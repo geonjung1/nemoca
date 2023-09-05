@@ -68,6 +68,30 @@ public class BoardDao {
 		map.put("endRow", endRow);
 		return session.selectList("boardns.list",map);
 	}
+	public List<Board> list2(int startRow, int endRow) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startRow",startRow);
+		map.put("endRow", endRow);
+		return session.selectList("boardns.list2",map);
+	}
+	public List<Board> list3(int startRow, int endRow) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startRow",startRow);
+		map.put("endRow", endRow);
+		return session.selectList("boardns.list3",map);
+	}
+	
+	public List<Board> list4(int startRow, int endRow) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startRow",startRow);
+		map.put("endRow", endRow);
+		return session.selectList("boardns.list4",map);
+	}
+	
+	
 	public int delete(int b_no) {
 		// TODO Auto-generated method stub
 		return session.update("boardns.delete", b_no);
@@ -86,6 +110,10 @@ public class BoardDao {
 	} 
 	public List<Board> myPage(String user_id) {
 		return session.selectList("boardns.myPage", user_id);
+	}
+	public List<Board> search(String srch) {
+		// TODO Auto-generated method stub
+		return session.selectList("boardns.search", srch);
 	}
 
 }

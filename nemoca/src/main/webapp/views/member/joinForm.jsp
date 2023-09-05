@@ -6,6 +6,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Diphylleia&display=swap')
+	;
+/* font-family: 'Diphylleia', serif; */
+* {
+	font-family: "Diphylleia";
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
 .join {
 	text-align: center;
 	text-align: center;
@@ -88,35 +99,37 @@ section {
 	margin-bottom: 120px;
 }
 
-.button {
-	width: 190px;
-	height: 35px;
-	background-color: black;
+.btnGray60 {
 	color: white;
-	font-weight: bold;
-	margin: 0 auto;
+	border: 1px solid #666666;
+	min-width: 80px;
+	height: 40px;
+	border-radius: 5px;
+	padding: 15px 28px;
+	font-size: 14px;
+	line-height: 16px;
+	font-weight: 700;
+	background-color: #222222;
+}
+
+.btnRegist {
+	width: 92px;
+	padding: 15px 0;
+	padding-top: 12px;
+	padding-right: 0px;
+	padding-bottom: 15px;
+	padding-left: 0px;
+	margin-top: 3px;
+}
+
+.button_box {
+	text-align: center;
 }
 
 .essen {
 	text-align: center;
 	margin-top: 50px;
 	margin-bottom: 15px;
-}
-
-.button {
-	color: #fff;
-	font-size: 24px;
-	display: inline-block;
-	height: 65px;
-	line-height: 65px;
-	margin-bottom: 10px;
-	text-align: center;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.button_box {
-	text-align: center;
 }
 
 .chk-btn {
@@ -139,7 +152,7 @@ p {
 }
 
 #err_pass {
-	color:#ED4C00;
+	color: #ED4C00;
 }
 
 /* reset */
@@ -209,7 +222,18 @@ ul {
 	text-align: left;
 }
 
+option {
+	text-align: center;
+}
 
+optgroup {
+	text-align: center;
+}
+
+.mem img {
+	width: 250px;
+	height: 250px;
+}
 </style>
 
 
@@ -227,6 +251,7 @@ ul {
 			$('#err_id').html(data);
 		});
 	}
+	
 	function chkPass() {
 		var pw = $('#pass').val();
 		if(pw.length < 8) {
@@ -271,7 +296,14 @@ ul {
 			return false;
 			}
 		}
-	}	
+	}
+	
+	const autoHyphen = (target) => {
+		 target.value = target.value
+		   .replace(/[^0-9]/g, '')
+		   .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+		}
+	
 </script>
 </head>
 <body>
@@ -282,8 +314,8 @@ ul {
 			<div class="grid">
 				<div class="box">
 					<div class="mem">
-						<img src="/nemoca/images/am.jpg" alt="">
-						<p>*회원정보를 입력해 주세요
+						<img src="/nemoca/images/basic_profile.png">
+						<p>*회원정보를 꼭 입력해주세요.
 					</div>
 					<div class="inf">
 						<strong>아이디<span>(필수)</span></strong><input type="text"
@@ -291,14 +323,14 @@ ul {
 						<button class="chk-btn" onclick="chkId()">중복체크</button>
 						<input type="hidden" name="checked_id" value="">
 						<div class="chk-msg" id="err_id"></div>
-						
+
 						<strong>닉네임<span>(필수)</span></strong><input type="text"
 							name="nickname" placeholder="닉네임" required="required">
 						<button class="chk-btn" onclick="chkNick()">중복체크</button>
 						<input type="hidden" name="checked_nick" value="">
 						<div class="chk-msg" id="err_nick"></div>
 					</div>
-					
+
 					<div class="inf">
 						<strong>비밀번호<span>(필수)</span></strong><input type="password"
 							name="pass" id="pass" placeholder="비밀번호" required="required"
@@ -310,23 +342,23 @@ ul {
 							name="confirmPass" placeholder="비밀번호 확인" required="required"
 							onchange="chkPassword()">
 					</div>
-					
+
 					<div class="inf">
 						<strong>이름<span>(필수)</span></strong><input type="text" name="name"
 							placeholder="이름" required="required"> <strong>지역<span>(필수)</span></strong><input
 							type="text" name="addr" placeholder="지역" required="required">
-							
-						<strong>성별<span>(필수)</span></strong>
-						<select class="pl on" onclick="select()" name="gender">
+
+						<strong>성별<span>(필수)</span></strong> <select class="pl on"
+							onclick="select()" name="gender">
 							<ul class="listbox" id="listbox">
+								<li><optgroup label="성별 선택"></optgroup>
 								<li><option class="list" value="M">남자</option></li>
 								<li><option class="list" value="W">여자</option></li>
 							</ul>
-						</select>
-							
-						<strong>나이<span>(필수)</span></strong> 
-						<select class="pl on" onclick="select()" name="age">
+						</select> <strong>나이<span>(필수)</span></strong> <select class="pl on"
+							onclick="select()" name="age">
 							<ul class="listbox" id="listbox">
+								<li><optgroup label="연령대 선택"></optgroup>
 								<li><option class="list" value="10">10대</option></li>
 								<li><option class="list" value="20">20대</option></li>
 								<li><option class="list" value="30">30대</option></li>
@@ -336,17 +368,17 @@ ul {
 							</ul>
 						</select>
 					</div>
-					
+
 					<div class="inf">
-						<strong>휴대폰<span class="type_coffe">(필수)</span></strong><input
-							type="tel" name="tel" required="required"
-							placeholder="010-1111-1111" pattern="010-\d{3,4}-\d{4}"
-							title="전화형식 010-1111-1111">
+						<strong>휴대폰('-'없이 번호만 입력)<span class="type_coffe">(필수)</span></strong>
+						<input type="text" oninput="autoHyphen(this)" name="tel"
+							required="required" placeholder="01012345678" maxlength="13">
 					</div>
-					
+
 					<div class="inf">
 						<strong>e-mail<span class="type_coffe">(필수)</span></strong><input
-							type="text" name="email" placeholder="이메일" required="required">
+							type="text" name="email" placeholder="이메일" maxlength="30"
+							required="required">
 					</div>
 				</div>
 			</div>
@@ -354,7 +386,7 @@ ul {
 				<b>필수입력란을 꼭 입력해주셔야 가입이 가능합니다.</b>
 			</div>
 			<div class="button_box">
-				<input type="submit" class="button" value="회원가입">
+				<input type="submit" class="btnGray60 btnRegist" value="회원가입">
 			</div>
 		</section>
 	</form>

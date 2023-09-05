@@ -103,17 +103,18 @@
 		     , C_DEL_DATE = SYSDATE
 		 WHERE C_NO = #{c_no}
 	</update>
-			
-			<!-- 마이페이지 -->
-	<select id="myPage" parameterType="string" resultType="cafelike">
+	
+	<!-- 마이페이지 -->
+	<select id="myPage" parameterType="string" resultType="cafe">
 		select * from (select rowNum rn, e.* from (
-		select * from cafe_like where user_id = #{user_id} order by c_no desc) e)
-		where rn between 1 and 4
-	</select>
+		SELECT * FROM CAFE
+		 WHERE EXISTS (SELECT 1 FROM CAFE_LIKE WHERE C_NO = CAFE.C_NO AND USER_ID = #{user_id})) e)
+		where rn between 1 and 5
+	</select> 
+	
 		<!-- 검색 -->
 	<select id="search" parameterType="string" resultType="cafe">
 	   select * from CAFE where c_name like '%'||#{srch}||'%' or c_loc like '%'||#{srch}||'%' or c_addr like '%'||#{srch}||'%' or c_addr_new like '%'||#{srch}||'%' 
 	</select>
 	
-		
 </mapper>

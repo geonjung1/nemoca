@@ -10,8 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import model.Cafe;
 import model.Cafe_like;
+import service.cafe.CafeLike;
 
 public class CafeLikeDao {
 	private static CafeLikeDao instance = new CafeLikeDao();
@@ -50,9 +50,10 @@ public class CafeLikeDao {
 		}
 	}
 
-	public List<Cafe_like> myPage(String user_id) {
-		// TODO Auto-generated method stub
-		return session.selectList(user_id);
-	}
 
+	
+	  public List<Cafe_like> myPage(String user_id) {
+		 
+		  return session.selectList("cafe.myPage", user_id); }
+	 
 }

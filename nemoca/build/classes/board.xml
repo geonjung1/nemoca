@@ -8,11 +8,42 @@
 	<select id="getTotal" resultType="integer">
 		select count(*) from board
 	</select>
+	
+	<!-- 메인페이지 - 게시글 목록 최신순 -->
 	<select id="list" parameterType="map" resultType="board">
 		select * from (select rowNum rn, a.* from(
 			select * from board order by b_no desc)a)
+				<!-- 삭제된 게시글 안 보임 -->
+			<!-- 	where b_del='n' and rn between #{startRow} and #{endRow} -->
+				
+				<!-- 삭제된 게시글 보임  -->
 				where rn between #{startRow} and #{endRow}
 	</select>
+	
+	<!-- 메인페이지 - 게시글 목록 조회순 -->
+	<select id="list2" parameterType="map" resultType="board">
+		select * from (select rowNum rn, a.* from(
+			select * from board order by b_readcount desc, b_no desc)a)
+				
+				where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 메인페이지 - 게시글 목록 인기순 -->
+	<select id="list3" parameterType="map" resultType="board">
+		select * from (select rowNum rn, a.* from(
+			select * from board order by likes desc, b_no desc)a)
+				
+				where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 메인페이지 - 게시글 목록 인기순 탑3 -->
+	<select id="list4" parameterType="map" resultType="board">
+		select * from (select rowNum rn, a.* from(
+			select * from board order by likes desc, b_no desc)a)
+				
+				where rn between 1 and 3
+	</select>
+	
 	<select id="getTotalB" resultType="integer">
 		select count(*) from board where b_del='n'
 	</select>
@@ -46,13 +77,24 @@
 	<!-- 게시글 수정 -->
 	<update id="update" parameterType="board">
 		update board set b_subject = #{b_subject}, b_content = #{b_content}
-			,b_img1 = #{b_img1} where b_no = #{b_no}
+			<if test="b_img1!=null and b_img1!=''">
+				,b_img1 = #{b_img1}
+			</if>			
+			 where b_no = #{b_no}
 	</update>
+	
+		<!-- 전체 검색 -->
+	<select id="search" parameterType="string" resultType="board">
+		select * from (select b.*, nickname from board b, member m where b.user_id=m.user_id)
+		where b_subject like '%'||#{srch}||'%' or b_content like '%'||#{srch}||'%'
+	</select>
 	
 	<!-- 마이페이지 -->
 	<select id="myPage" parameterType="string" resultType="board">
 		select * from (select rowNum rn, e.* from (
 		select * from board where user_id = #{user_id} and b_del='n' order by b_no desc) e)
-		where rn between 1 and 4
+		where rn between 1 and 5
 	</select>
+	
+	
 </mapper> 

@@ -11,6 +11,7 @@
 		<typeAlias alias="cafe" type="model.Cafe" />
 		<typeAlias alias="cafereview" type="model.Cafe_re" />
 		<typeAlias alias="cafelike" type="model.Cafe_like" />
+		
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -26,10 +27,10 @@
 	<mappers>
 		<mapper resource="member.xml" />
 		<mapper resource="board.xml" />
+		<mapper resource="caferanking.xml" />
+		<mapper resource="cafe.xml" />
 		<mapper resource="board_like.xml" />
 		<mapper resource="board_re.xml" />
-		<mapper resource="cafe.xml" />
-		<mapper resource="caferanking.xml" />
 		<mapper resource="cafereview.xml" />
 <!-- 	<mapper resource="cafestar.xml" /> -->
 	</mappers>

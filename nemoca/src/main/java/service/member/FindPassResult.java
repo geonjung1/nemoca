@@ -15,7 +15,7 @@ public class FindPassResult implements CommandProcess {
 		String user_id = request.getParameter("user_id");
 		
 		MemberDao md = MemberDao.getInstance();
-		Member member = md.findPass(nickname, user_id); 
+		Member member = md.findPass(nickname, user_id);
 		
 		request.setAttribute("member", member);
 		return "findPassResult";

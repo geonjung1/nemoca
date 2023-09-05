@@ -6,8 +6,8 @@ public class Board_like {
 	private String user_id;
 	private int b_no;
 	// 조회용
-	private String B_subject;
-	private Date B_reg_date;
+	private String b_subject;
+	private Date b_reg_date;
 	
 	public String getUser_id() {
 		return user_id;
@@ -21,17 +21,18 @@ public class Board_like {
 	public void setB_no(int b_no) {
 		this.b_no = b_no;
 	}
+
 	public String getB_subject() {
-		return B_subject;
+		return b_subject;
 	}
 	public void setB_subject(String b_subject) {
-		B_subject = b_subject;
+		this.b_subject = b_subject;
 	}
 	public Date getB_reg_date() {
-		return B_reg_date;
+		return b_reg_date;
 	}
 	public void setB_reg_date(Date b_reg_date) {
-		B_reg_date = b_reg_date;
+		this.b_reg_date = b_reg_date;
 	}
 	
 }

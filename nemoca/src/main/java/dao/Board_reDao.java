@@ -92,5 +92,13 @@ public class Board_reDao {
 		// TODO Auto-generated method stub
 		return session.selectList("board_rens.myPage", user_id);
 	}
+
+	// 다른 테이블에서 user_id를 활용한 user_img찾기
+	public String selectUser_img(String user_id) {
+		// TODO Auto-generated method stub
+		return (String) session.selectOne("memberns.selectUser_img", user_id);
+	}
+	
+	
 	
 }

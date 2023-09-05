@@ -70,4 +70,17 @@ public class MemberDao {
 		hm.put("user_id", user_id);
 		return (Member) session.selectOne("memberns.findPass", hm);
 	}
+
+	public int getTotal() {
+		return (int) session.selectOne("memberns.getTotal");
+	}
+
+	public List<Member> list(int startRow, int endRow) {
+		HashMap<String, Integer> hm = new HashMap<>();
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+		return (List<Member>)session.selectList("memberns.list", hm);
+	}
+	
+	
 }

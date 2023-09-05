@@ -26,16 +26,19 @@
 }
 </style>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
 <script type="text/javascript">
 
+const myModal = new bootstrap.Modal(document.getElementById('myModal'), options)
+//or
+const myModalAlternative = new bootstrap.Modal('#myModal', options)
 
-	$(function() {
+/* 	$(function() {
 	    $(".btn-secondary").on("click", function() {
 	        $(".re_reply").toggle();
 	    })
-	})
+	}) */
 
 
 	function sessionChk() {
@@ -49,7 +52,7 @@
 		if (${empty user_id}) {
 			var con = confirm("로그인 후 이용해 주시기 바랍니다.");
 			if (con) {
-				location.href = "/nemoca/views/member/loginForm.le";
+				location.href = "/nemoca/views/member/loginForm.pa";
 			} 
 		} else {
 			// 게시글 좋아요 클릭
@@ -90,9 +93,9 @@
 	<div class="container">
 		<div class="row">
 			<!-- Blog entries-->
-			<div class="col-lg-8">
+			<div class="col-lg-12">
 				<!-- Featured blog post-->
-				<div class="card mb-4 border-dark">
+				<div class="card mb-4">
 					<img class="card-img-top" src="/nemoca/upload/${board.b_img1 }"
 						alt="..." />
 					<div class="card-body">
@@ -125,51 +128,83 @@
 			</div>
 			<!-- Side widgets-->
 
-			<div class="card border-success mb-3" style="max-width: 22rem;">
-				<div class="card-header bg-transparent border-success">댓글의 갯수
-					: ${board_re_cnt }
-					<form
-					action="board_reWrite.ha?b_no=${board.b_no}&br_re_no=0&br_ref=0&br_ref_level=0&br_ref_step=0"
-					method="post">
-					<div class="input-group mb-3">
 
-						<input type="text" class="form-control" name="br_content"
-							placeholder="댓글 내용을 쓰세요!" aria-label="Recipient's username"
-							aria-describedby="button-addon2">
-						<button class="btn btn-outline-secondary" type="submit"
-							id="button-addon2">댓글 입력하기!</button>
-					</div>
-				</form>
-				</div>
-				<c:if test="${empty list }">
-					<p>댓글이 없습니다.</p>
-				</c:if>
-				<c:if test="${not empty list }">
-					<ul class="list-group">
-						<c:forEach var="board_re" items="${list }">
-							<li class="list-group-item" style="font-size: 25px;">
-							<c:if test="${board_re.br_ref_level != 0 }"> <!-- 답글일 때 -->
-					ㄴ
-				</c:if>
-				<c:if test="${board_re.br_ref_level == 0 }"> <!-- 답글이 아닐 때(그냥 댓글) -->
-					
-				</c:if>	
-								${board_re.user_id} : ${board_re.br_content }<br> <c:if
-									test="${board_re.user_id == user_id }">
-									<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-										<button type="button" class="btn btn-success btn-sm">
-											<a href="board_reUpdateForm.ha?br_re_no=${board_re.br_re_no }">수정</a>
+			<br>
+
+			<c:if test="${empty list }">
+				<p>댓글이 없습니다.</p>
+			</c:if>
+			<c:if test="${not empty list }">
+				<c:forEach var="board_re" items="${list }">
+
+
+					<c:if test="${board_re.br_ref_level == 0 }">
+						<!-- 댓글일때  -->
+						<div class="comment-widgets" style="width: 100%">
+							<!-- Comment Row -->
+							<div class="d-flex p-2 comment-row m-t-0">
+								<div class="p-2">
+									<img src="/nemoca/upload/${board_re.user_img }" alt="user"
+										width="120" class="rounded-circle">
+								</div>
+								<div class="comment-text w-100">
+									<h4 class="font-medium">${board_re.user_id }</h4>
+									<span class="m-b-15 d-block">${board_re.br_content }<br>
+									<br></span>
+									<div class="comment-footer">
+										<span class="text-muted float-right">${board_re.br_reg_date }</span>
+										
+										<c:if test="${not empty user_id }">
+										<button type="button" class="btn btn-primary btn-sm">
+											<a
+												href="board_reUpdateForm.ha?br_re_no=${board_re.br_re_no }">수정</a>
 										</button>
+										<button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
+										>답글</button>
 										<button type="button" class="btn btn-danger btn-sm"
 											onclick="delReply(${board_re.br_re_no })">삭제</button>
-								</c:if>
-								<button type="button" class="btn btn-secondary btn-sm"
-									id="btn btn-secondary">답글</button>
-									
-							</li>
-					</ul>
+											</c:if>
+											
+									</div>
+								</div>
+							</div>
+							<!-- Comment Row -->
+					</c:if>
+					<c:if test="${board_re.br_ref_level != 0 }">
+						<!-- 답글일때  -->
+						<div class="d-flex p-2 comment-row m-t-0">
 
-					
+							<div class="p-2">
+								<img src="/nemoca/images/reply.PNG" alt="user" width="120"
+									class="rounded-circle">
+							</div>
+							<div class="p-2">
+								<img src="/nemoca/upload/${board_re.user_img }" alt="user"
+									width="120" class="rounded-circle">
+							</div>
+							<div class="comment-text w-100">
+								<h4 class="font-medium">${board_re.user_id }</h4>
+								<span class="m-b-15 d-block">${board_re.br_content }<br>
+								<br></span>
+								<div class="comment-footer">
+									<span class="text-muted float-right">${board_re.br_reg_date }</span>
+									
+									<c:if test="${board.user_id == user_id }">
+									<button type="button" class="btn btn-primary btn-sm">
+										<a href="board_reUpdateForm.ha?br_re_no=${board_re.br_re_no }">수정</a>
+									</button>
+<!-- 									<button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
+										>답글</button> -->
+									<button type="button" class="btn btn-danger btn-sm"
+										onclick="delReply(${board_re.br_re_no })">삭제</button>
+										</c:if>
+										
+								</div>
+							</div>
+
+						</div>
+						<!-- Comment Row -->
+					</c:if>
 					<div class="re_reply">
 						<form
 							action="board_reWrite.ha?b_no=${board.b_no }&br_re_no=${board_re.br_re_no }&br_ref=${board_re.br_ref}&br_ref_level=${board_re.br_ref_level}&br_ref_step=${board_re.br_ref_step}"
@@ -186,32 +221,71 @@
 						</form>
 					</div>
 
-					</c:forEach>
+
+					<hr>
+
+<!-- Modal -->
+<form action="board_reWrite.ha?b_no=${board.b_no }&br_re_no=${board_re.br_re_no }&br_ref=${board_re.br_ref}&br_ref_level=${board_re.br_ref_level}&br_ref_step=${board_re.br_ref_step}"
+							method="post">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">답글 입력 칸</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" name="br_content"
+									placeholder="답글 내용을 쓰세요!" aria-label="Recipient's username"
+									aria-describedby="button-addon2">
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">
+        답글 입력하기!</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</form>
 
 
-
-				</c:if>
-
+				</c:forEach>
 				
-				
-				
-				
-			</div>
 
 
 
+			</c:if>
+			<p>
+			<p>
 		</div>
+		<!-- Card -->
+
+
+		<form
+			action="board_reWrite.ha?b_no=${board.b_no}&br_re_no=0&br_ref=0&br_ref_level=0&br_ref_step=0"
+			method="post">
+			<div class="input-group mb-3">
+				<input type="text" name="br_content" class="form-control"
+					placeholder="댓글 내용을 쓰세요!" aria-label="Recipient's username"
+					aria-describedby="button-addon2">
+				<button class="btn btn-outline-secondary" type="submit"
+					id="button-addon2">댓글 입력하기!</button>
+			</div>
+		</form>
+
+		<!-- 복사한곳여기 -->
 
 
 	</div>
-	</div>
+</div>
 	<!-- 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script> -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-		crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+		
+		
 </body>
 </html>
