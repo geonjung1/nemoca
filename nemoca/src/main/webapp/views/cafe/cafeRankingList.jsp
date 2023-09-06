@@ -143,7 +143,7 @@ $(document).ready(function () {
       <div class="rankingTitle1" id="title"></div>
       <div class="rankingTitle2" id="title_sub"></div>
    </div>
-   <hr>
+
    </div>
 	<div class="rankingList">
 		<c:forEach var="cafe" items="${cafeRankingList}">

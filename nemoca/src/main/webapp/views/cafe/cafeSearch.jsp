@@ -17,6 +17,7 @@
 .rankingList {
 	/* 	text-align: center; */
 	
+	
 }
 
 .search {
@@ -127,7 +128,8 @@ fieldset {
 .search_text {
 	text-align: center;
 	font-size: 20px;
-	
+	height: 48vh;
+	margin-top: 100px;
 }
 .no_search {
 	
@@ -163,7 +165,7 @@ fieldset {
 </head>
 <body>
 	<form action="/nemoca/views/cafe/cafeSearch.le"
-		onesubmit="return chk()" name="frm" method="post">
+		onsubmit="return chk()" name="frm" method="post">
 		<div class="search">
 			<fieldset class="search_css">
 				<input type="text" name="srch" placeholder="검색어를 입력해주세요">

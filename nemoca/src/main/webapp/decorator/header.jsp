@@ -164,8 +164,7 @@ ul {
 			</a>
 		</div>
 	</header>
-	<hr>
-	<hr>
+
 	
 </body>
 </html>

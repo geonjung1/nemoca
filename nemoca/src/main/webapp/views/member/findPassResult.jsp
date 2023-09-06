@@ -12,7 +12,7 @@
 .btnGray60 {
 	color: white;
 	border: 1px solid #666666;
-	min-width: 80px;
+	min-width: 100px;
 	height: 40px;
 	border-radius: 5px;
 	padding: 15px 28px;
@@ -40,34 +40,32 @@
 div {
 	text-align: center;
 }
+
+.find-centaner {
+	height: 57vh;
+	margin-top: 220px;
+}
 </style>
 
 </head>
 <body>
 
 	<form action="loginForm.pa" method="post">
-		<div class="find-result">
-			<h1 class="title">비밀번호 찾기 결과</h1>
-			<c:if test="${member != null }">
+		<div class="find-centaner">
+			<div class="find-result">
+				<h1 class="title">비밀번호 찾기 결과</h1>
+				<c:if test="${member != null }">
 		비밀번호는 ${member.pass } 입니다.
 	</c:if>
-			<!-- 수정하기 혹은 비밀번호를 8글자 이상으로 설정하기 -->
-			<%-- <c:if test="${fn:length(member.pass) < 4 }">
-			비밀번호는 <strong> ${fn:substring(member.pass,0,4) }
-				<c:forEach begin="1" end="${fn:length(member.pass)-1 }">
-				*
-				</c:forEach>
-			</strong> 입니다.			
-		</c:if> --%>
 
-
-			<c:if test="${member == null }">
+				<c:if test="${member == null }">
 		존재하지 않는 회원정보 입니다.
 	</c:if>
-		</div>
+			</div>
 
-		<div>
-			<input type="submit" value="로그인 하러 가기" class="btnGray60 btnRegist">
+			<div>
+				<input type="submit" value="로그인 하러 가기" class="btnGray60 btnRegist">
+			</div>
 		</div>
 	</form>
 

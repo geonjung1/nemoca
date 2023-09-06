@@ -11,7 +11,7 @@
 .btnGray60 {
 	color: white;
 	border: 1px solid #666666;
-	min-width: 80px;
+	min-width: 100px;
 	height: 40px;
 	border-radius: 5px;
 	padding: 15px 28px;
@@ -33,16 +33,22 @@
 
 .find-re {
 	text-align: center;
+	
 }
 
 div {
 	text-align: center;
 }
+.find-centaner {
+	height: 57vh;
+	margin-top: 220px;
+	}
 </style>
 
 </head>
 <body>
 	<form action="loginForm.pa" method="post">
+		<div class="find-centaner">
 		<div class="find-re">
 			<h1 class="title">아이디 찾기 결과</h1>
 			<c:if test="${member != null }">
@@ -56,6 +62,7 @@ div {
 
 		<div>
 			<input type="submit" value="로그인 하러 가기" class="btnGray60 btnRegist">
+		</div>
 		</div>
 	</form>
 </body>

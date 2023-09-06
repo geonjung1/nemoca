@@ -26,7 +26,8 @@
 	align-items: center;
 	justify-content: center;
 	background-color: cyan;
-	background-image: url("/nemoca/images/mainC.jpg");
+	background-image: url("/nemoca/images/mainPic.jpg");
+	background-position: 50% 63%;
 }
 
 .mid {

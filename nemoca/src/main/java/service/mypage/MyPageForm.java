@@ -32,12 +32,11 @@ public class MyPageForm implements CommandProcess {
 			
 			CafeRankingDao cr = CafeRankingDao.getInstance();
 			List<Cafe> cllist = cr.myPage(user_id);
-						
-			BoardDao bd = BoardDao.getInstance();
+			
+			BoardDao bd = BoardDao.getInstance();			
 			List<Board> bdList = bd.myPage(user_id);
 			
 			Board_likeDao bl = Board_likeDao.getInstance();
-			
 			List<Board_like> bllist = bl.myPage(user_id);
 			for(Board_like board_like: bllist) {
 				Board board = bd.select(board_like.getB_no());
@@ -52,7 +51,8 @@ public class MyPageForm implements CommandProcess {
 			request.setAttribute("brdlist", brdList);
 			request.setAttribute("cllist", cllist);
 			request.setAttribute("bllist", bllist);
-		
+			
+					
 		}
 		return "myPageForm";
 		

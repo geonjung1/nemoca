@@ -26,7 +26,8 @@
 }
 </style>
 
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
 <script type="text/javascript">
 
@@ -150,21 +151,21 @@ const myModalAlternative = new bootstrap.Modal('#myModal', options)
 								<div class="comment-text w-100">
 									<h4 class="font-medium">${board_re.user_id }</h4>
 									<span class="m-b-15 d-block">${board_re.br_content }<br>
-									<br></span>
+										<br></span>
 									<div class="comment-footer">
 										<span class="text-muted float-right">${board_re.br_reg_date }</span>
-										
+
 										<c:if test="${not empty user_id }">
-										<button type="button" class="btn btn-primary btn-sm">
-											<a
-												href="board_reUpdateForm.ha?br_re_no=${board_re.br_re_no }">수정</a>
-										</button>
-										<button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
-										>답글</button>
-										<button type="button" class="btn btn-danger btn-sm"
-											onclick="delReply(${board_re.br_re_no })">삭제</button>
-											</c:if>
-											
+											<button type="button" class="btn btn-primary btn-sm">
+												<a
+													href="board_reUpdateForm.ha?br_re_no=${board_re.br_re_no }">수정</a>
+											</button>
+											<button type="button" class="btn btn-secondary btn-sm"
+												data-bs-toggle="modal" data-bs-target="#exampleModal">답글</button>
+											<button type="button" class="btn btn-danger btn-sm"
+												onclick="delReply(${board_re.br_re_no })">삭제</button>
+										</c:if>
+
 									</div>
 								</div>
 							</div>
@@ -185,20 +186,21 @@ const myModalAlternative = new bootstrap.Modal('#myModal', options)
 							<div class="comment-text w-100">
 								<h4 class="font-medium">${board_re.user_id }</h4>
 								<span class="m-b-15 d-block">${board_re.br_content }<br>
-								<br></span>
+									<br></span>
 								<div class="comment-footer">
 									<span class="text-muted float-right">${board_re.br_reg_date }</span>
-									
+
 									<c:if test="${board.user_id == user_id }">
-									<button type="button" class="btn btn-primary btn-sm">
-										<a href="board_reUpdateForm.ha?br_re_no=${board_re.br_re_no }">수정</a>
-									</button>
-<!-- 									<button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
+										<button type="button" class="btn btn-primary btn-sm">
+											<a
+												href="board_reUpdateForm.ha?br_re_no=${board_re.br_re_no }">수정</a>
+										</button>
+										<!-- <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
 										>답글</button> -->
-									<button type="button" class="btn btn-danger btn-sm"
-										onclick="delReply(${board_re.br_re_no })">삭제</button>
-										</c:if>
-										
+										<button type="button" class="btn btn-danger btn-sm"
+											onclick="delReply(${board_re.br_re_no })">삭제</button>
+									</c:if>
+
 								</div>
 							</div>
 
@@ -224,34 +226,38 @@ const myModalAlternative = new bootstrap.Modal('#myModal', options)
 
 					<hr>
 
-<!-- Modal -->
-<form action="board_reWrite.ha?b_no=${board.b_no }&br_re_no=${board_re.br_re_no }&br_ref=${board_re.br_ref}&br_ref_level=${board_re.br_ref_level}&br_ref_step=${board_re.br_ref_step}"
-							method="post">
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">답글 입력 칸</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <input type="text" class="form-control" name="br_content"
-									placeholder="답글 내용을 쓰세요!" aria-label="Recipient's username"
-									aria-describedby="button-addon2">
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">
-        답글 입력하기!</button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-</form>
+					<!-- Modal -->
+					<form
+						action="board_reWrite.ha?b_no=${board.b_no }&br_re_no=${board_re.br_re_no }&br_ref=${board_re.br_ref}&br_ref_level=${board_re.br_ref_level}&br_ref_step=${board_re.br_ref_step}"
+						method="post">
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1 class="modal-title fs-5" id="exampleModalLabel">답글 입력
+											칸</h1>
+										<button type="button" class="btn-close"
+											data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<input type="text" class="form-control" name="br_content"
+											placeholder="답글 내용을 쓰세요!" aria-label="Recipient's username"
+											aria-describedby="button-addon2">
+									</div>
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-secondary"
+											data-bs-dismiss="modal">답글 입력하기!</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
 
 
 				</c:forEach>
-				
+
 
 
 
@@ -278,14 +284,17 @@ const myModalAlternative = new bootstrap.Modal('#myModal', options)
 
 
 	</div>
-</div>
+	</div>
 	<!-- 	<script
 		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script> -->
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-		
-		
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+
+
 </body>
 </html>

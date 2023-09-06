@@ -59,6 +59,7 @@
 }
 
 .content {
+	margin-top: 32px;
 	display: flex;
     justify-content: center;
 }
@@ -73,6 +74,7 @@
 .f {
 	margin-top: 50px;
 	margin-bottom: 100px;
+	height: 72vh;
 }
 
 table {
@@ -98,13 +100,9 @@ table td {
 	font-size: 14px;
 	border-bottom: 1px solid #e4e4e4;
 	padding: 3px 5px;
+	cursor:pointer;
 }
 
-table td a {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
 table tr td {
 	text-overflow:ellipsis;
 	white-space:nowrap;
@@ -130,8 +128,10 @@ table tr td {
 						<c:if test="${member.user_id == 'master' }">
 						<a href="/nemoca/views/master/memberList.pa?user_id=${member.user_id}">
 							<span>회원 목록 관리</span>
-						</c:if>
-					</a></li>
+						<a href="/nemoca/views/member/updateForm.pa?user_id=${member.user_id }">
+							<span>마스터 정보 수정</span>
+						</c:if>	
+					</a></a></li>
 				</ul>
 			</div>
 		</div>
@@ -148,9 +148,9 @@ table tr td {
 							<th>주소</th>
 						</tr>
 						<c:forEach items="${cllist}" var="cl">
-						<tr>
-							<td><a href="/nemoca/views/cafe/cafeView.yo?user_id=${member.user_id}"></a>${cl.c_name}</td>
-							<td><a href="/nemoca/views/cafe/cafeView.yo?user_id=${member.user_id}"></a>${cl.c_addr}</td>
+						<tr> 
+							<td onClick="location.href='http://localhost:8080/nemoca/views/cafe/cafeView.yo?c_no=${cl.c_no}'">${cl.c_name}</td>
+							<td onClick="location.href='http://localhost:8080/nemoca/views/cafe/cafeView.yo?c_no=${cl.c_no}'">${cl.c_addr}</td>
 						</tr>
 						</c:forEach>
 					</table>
@@ -168,10 +168,8 @@ table tr td {
 							<c:forEach items="${bdlist}" var="bd">
 								<tbody>
 									<tr>
-										<td><a
-											href="/nemoca/views/board/boaedView.ha?user_id=${member.user_id}"></a>${bd.b_subject}</td>
-										<td><a
-											href="/nemoca/views/board/boaedView.ha?user_id=${member.user_id}"></a>${bd.b_content}</td>
+										<td onClick="location.href='http://localhost:8080/nemoca/views/board/boardView.ha?b_no=${bd.b_no}'">${bd.b_subject}</td>
+										<td onClick="location.href='http://localhost:8080/nemoca/views/board/boardView.ha?b_no=${bd.b_no}'">${bd.b_content}</td>
 									</tr>
 								</tbody>
 							</c:forEach>
@@ -192,9 +190,8 @@ table tr td {
 					<c:forEach items="${bllist}" var="bl">
 								<tbody>
 									<tr>
-										<td> 
-										<a href="/nemoca/views/board/boaedView.ha?user_id=${member.user_id}"></a>${bl.b_subject}</td>
-										<td><a href="/nemoca/views/board/boaedView.ha?user_id=${member.user_id}"></a>${bl.b_reg_date}</td>
+										<td onClick="location.href='http://localhost:8080/nemoca/views/board/boardView.ha?b_no=${bl.b_no}'">${bl.b_subject}</td>
+										<td onClick="location.href='http://localhost:8080/nemoca/views/board/boardView.ha?b_no=${bl.b_no}'">${bl.b_reg_date}</td>
 									</tr>
 								</tbody>
 					</c:forEach>
@@ -214,10 +211,8 @@ table tr td {
 							<c:forEach items="${brdlist}" var="brd">
 								<tbody>
 									<tr>
-										<td><a
-											href="/nemoca/views/board/boaedView.ha?user_id=${member.user_id}"></a>${brd.br_content}</td>
-										<td><a
-											href="/nemoca/views/board/boaedView.ha?user_id=${member.user_id}"></a>${brd.br_reg_date}</td>
+										<td onClick="location.href='http://localhost:8080/nemoca/views/board/boardView.ha?b_no=${brd.b_no}'">${brd.br_content}</td>
+										<td onClick="location.href='http://localhost:8080/nemoca/views/board/boardView.ha?b_no=${brd.b_no}'">${brd.br_reg_date}</td>
 									</tr>
 								</tbody>
 							</c:forEach>

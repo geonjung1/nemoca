@@ -92,6 +92,7 @@ input::placeholder {
 	padding-left: 0px;
 	margin-top: 3px;
 }
+
 </style>
 
 
