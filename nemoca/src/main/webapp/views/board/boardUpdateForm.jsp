@@ -37,7 +37,7 @@
 
 	<form action="/nemoca/views/board/boardUpdate.ha?b_no=${board.b_no }" method="post" enctype="multipart/form-data">
 		<div class="board_body">
-			<div class="card mb-3" style="max-width: 1000px;">
+			<div class="card mb-3" style="min-width: 1000px;">
 				<div class="row g-0">
 					<div class="col-md-8">
 						<div class="card-body">

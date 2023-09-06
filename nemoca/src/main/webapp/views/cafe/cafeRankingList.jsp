@@ -233,8 +233,7 @@ $(document).ready(function () {
 					</tr>
 				</table>
 				</div>
-			</div>
-		</c:forEach>
-	</div>
+			</c:forEach>
+		</div>		
 </body>
 </html>

@@ -44,6 +44,10 @@
 	height: 250px;
 	object-fit: none;
 }
+.e {
+	height: 33vh;
+	margin-top: 180px; 
+}
 </style>
 <script type="text/javascript">
 //세션 확인
@@ -57,6 +61,13 @@ function sessionChk() {
 		location.href = "/nemoca/views/board/boardWriteForm.ha";
 	}
 }
+function srchchk() {
+	if(!frm.srch.value) {
+		alert("검색어를 입력하세요");
+		frm.srch.focus();
+		return false;
+	}
+} 
 </script>
 
 <link rel="stylesheet"
@@ -66,14 +77,13 @@ function sessionChk() {
 </head>
 <body>
 	<div class="container-lg text-center">
-		<img src='/nemoca/images/coffee.PNG' width="80px">
-		<span class="boardtitle">게 시 판</span><img
-			src='/nemoca/images/coffee.PNG' width="80px">
+		
+		<span class="boardtitle">게 시 판</span>
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 			<button type="button" class="btn btn-dark "
 				onclick="sessionChk()">글쓰기</button>
 		</div><br>
-		<form action="/nemoca/views/board/searchResult.ha" method="post">
+		<form action="/nemoca/views/board/board_searchResult.ha" method="post" onsubmit="return srchchk()" name="frm">
 		<div class="input-group mb-3">
 		
   <input type="text" name="srch" class="form-control" placeholder="검색할 내용을 입력하세요." aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -84,9 +94,11 @@ function sessionChk() {
 
 
 	<c:if test="${bdList.size() == 0}">
+		<div class="e">
 		<tr>
 			<th colspan="5">검색 결과가 없습니다.</th>
 		</tr>
+		</div>
 	</c:if>
 	<c:if test="${bdList.size() != 0 }">
 		<div class="row row-cols-3 row-cols-md-3" >

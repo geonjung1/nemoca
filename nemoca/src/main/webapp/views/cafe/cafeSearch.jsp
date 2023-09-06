@@ -127,9 +127,8 @@ fieldset {
 }
 .search_text {
 	text-align: center;
-	font-size: 20px;
-	height: 48vh;
-	margin-top: 100px;
+	height: 34vh;
+	margin-top: 180px; 
 }
 .no_search {
 	
@@ -165,11 +164,11 @@ fieldset {
 </head>
 <body>
 	<form action="/nemoca/views/cafe/cafeSearch.le"
-		onsubmit="return chk()" name="frm" method="post">
+		 name="frm" method="post" onsubmit="return srchchk()">
 		<div class="search">
 			<fieldset class="search_css">
 				<input type="text" name="srch" placeholder="검색어를 입력해주세요">
-				<button type="submit" onclick="srchchk()">검색</button>
+				<button type="submit">검색</button>
 			</fieldset>
 		</div>
 	</form>
@@ -177,7 +176,7 @@ fieldset {
 		<c:if test="${cflist.size() == 0}">
 		<div class="no_search">
 			<p class="search_text">
-				검색 결과가 없습니다.<br>다른 검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요.
+				검색 결과가 없습니다.
 			</p>
 		</div>
 		</c:if>

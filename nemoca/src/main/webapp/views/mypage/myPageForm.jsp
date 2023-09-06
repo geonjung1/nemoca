@@ -127,7 +127,7 @@ table tr td {
 						</c:if>
 						<c:if test="${member.user_id == 'master' }">
 						<a href="/nemoca/views/master/memberList.pa?user_id=${member.user_id}">
-							<span>회원 목록 관리</span>
+							<span>회원 목록 관리</span><br>
 						<a href="/nemoca/views/member/updateForm.pa?user_id=${member.user_id }">
 							<span>마스터 정보 수정</span>
 						</c:if>	

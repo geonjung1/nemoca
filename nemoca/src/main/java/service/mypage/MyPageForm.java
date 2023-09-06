@@ -51,7 +51,6 @@ public class MyPageForm implements CommandProcess {
 			request.setAttribute("brdlist", brdList);
 			request.setAttribute("cllist", cllist);
 			request.setAttribute("bllist", bllist);
-			
 					
 		}
 		return "myPageForm";

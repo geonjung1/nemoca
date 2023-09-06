@@ -33,7 +33,7 @@ body {
 	line-height: 1.5;
 }
 
-a {
+header a {
 	color: #262626;	
 	text-decoration: none; 
 }

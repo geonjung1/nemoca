@@ -66,7 +66,6 @@ button {
 }
 
 .search {
-	font-size: 5px;
 	text-align: right;
 	margin-top: 6px;
 	text-align: center;
@@ -74,6 +73,10 @@ button {
 
 input::placeholder {
 	font-size: 0.1em;
+}
+
+.box2 {
+	margin-bottom: 250px;
 }
 </style>
 </head>

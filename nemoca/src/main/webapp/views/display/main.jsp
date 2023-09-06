@@ -128,6 +128,7 @@ function requestRankingTypeList(type){
 function srchchk() {
 	if (!frm.srch.value) {
 		alert("검색어를 입력하세요");
+		frm.srch.focus();
 		return false;
 	}
 }
@@ -137,12 +138,12 @@ function srchchk() {
 
 </head>
 <body>
-	<form action="/nemoca/views/cafe/cafeSearch.le" onsubmit="return chk()"
-		method="post" name="frm">
+	<form action="/nemoca/views/cafe/cafeSearch.le" 
+		method="post" name="frm" onsubmit="return srchchk()">
 		<div class="search">
 			<fieldset class="search_css">
 				<input type="text" name="srch" placeholder="검색어를 입력해주세요">
-				<button type="submit" onclick="srchchk()">검색</button>
+				<button type="submit">검색</button>
 			</fieldset>
 		</div>
 	</form>

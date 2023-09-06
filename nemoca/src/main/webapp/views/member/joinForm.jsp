@@ -231,8 +231,8 @@ optgroup {
 }
 
 .mem img {
-	width: 250px;
-	height: 250px;
+	width: 220px;
+	height: 220px;
 }
 </style>
 
@@ -298,6 +298,7 @@ optgroup {
 		}
 	}
 	
+	/* 휴대폰 번호 하이픈 자동 추가 */
 	const autoHyphen = (target) => {
 		 target.value = target.value
 		   .replace(/[^0-9]/g, '')
